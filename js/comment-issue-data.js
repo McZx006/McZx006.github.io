@@ -14,15 +14,18 @@ var valine;
 var ADMIN_NAME = "removeif";
 
 function ajaxReqForGitHub(url, authorizationToken, call) {
+    var headers = {
+        Accept: "application/json; charset=utf-8"
+    };
+    if (authorizationToken && authorizationToken != 'Basic undefined:undefined') {
+        headers.Authorization = authorizationToken;
+    }
     $.ajax({
         type: "get",
         url: url,
-        headers: {      //请求头
-            Accept: "application/json; charset=utf-8",
-            Authorization: "" + authorizationToken  //这是获取的token
-        },
+        headers: headers,
         data: "",
-        contentType: "application/json",  //推荐写这个
+        contentType: "application/json",
         dataType: "json",
         error: function () {
             console.log('req error');
@@ -34,11 +37,16 @@ function ajaxReqForGitHub(url, authorizationToken, call) {
 }
 
 function writeHtmlCommentCountValueById(id, repoIssuesUrl, authorizationToken) {
-    reqCommentCountUrl = repoIssuesUrl + "?t=" + new Date().getTime() + "&labels=Gitalk,";
-    ajaxReqForGitHub(reqCommentCountUrl + id, authorizationToken, function (result) {
+    reqCommentCountUrl = repoIssuesUrl + "?t=" + new Date().getTime() + "&filter=all&state=open";
+    ajaxReqForGitHub(reqCommentCountUrl, authorizationToken, function (result) {
         try {
-            if (result.length > 0) {
-                $("#" + id).html(result[0].comments);
+            if (result && result.length > 0) {
+                var issue = result.find(function(item) {
+                    return item.body && item.body.indexOf(id) !== -1;
+                });
+                if (issue) {
+                    $("#" + id).html(issue.comments);
+                }
             }
         } catch (e) {
             console.error(e);
