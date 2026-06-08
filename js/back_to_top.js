@@ -1,4 +1,5 @@
-$(document).ready(() => {
+// back to top button
+function loadBackTop() {
     const $button = $('#back-to-top');
     const $footer = $('footer.footer');
     const $mainColumn = $('.column-main');
@@ -149,4 +150,7 @@ $(document).ready(() => {
             $('body, html').animate({ scrollTop: 0 }, 400);
         }
     });
-});
+}
+
+// 初始化加载
+$(document).ready(loadBackTop);
