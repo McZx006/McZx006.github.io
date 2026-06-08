@@ -101,35 +101,39 @@
         });
 
         function loadUtterances() {
-            // 检查是否存在评论容器
-            var commentContainer = document.getElementById('comment-container');
-            if (!commentContainer) {
-                return;
-            }
-            
-            // 如果已经有评论脚本，先移除
-            var existingScript = document.getElementById('utterances-script');
-            if (existingScript) {
-                existingScript.remove();
-            }
-            
-            // 检查是否是 Utterances 评论
-            var utterancesScript = commentContainer.querySelector('script[src*="utteranc.es"]');
-            if (utterancesScript) {
-                // 创建新的脚本标签
-                var newScript = document.createElement('script');
-                newScript.id = 'utterances-script';
-                newScript.src = utterancesScript.src;
-                
-                // 复制所有属性
-                for (var i = 0; i < utterancesScript.attributes.length; i++) {
-                    var attr = utterancesScript.attributes[i];
-                    if (attr.name !== 'src') {
-                        newScript.setAttribute(attr.name, attr.value);
-                    }
+            try {
+                var commentContainer = document.getElementById('comment-container');
+                if (!commentContainer) {
+                    return;
                 }
                 
-                // 添加到页面
-                commentContainer.appendChild(newScript);
+                var existingScript = document.getElementById('utterances-script');
+                if (existingScript) {
+                    existingScript.remove();
+                }
+                
+                var utterancesScript = commentContainer.querySelector('script[src*="utteranc.es"]');
+                if (utterancesScript) {
+                    commentContainer.innerHTML = '';
+                    
+                    var newScript = document.createElement('script');
+                    newScript.id = 'utterances-script';
+                    newScript.src = utterancesScript.src;
+                    newScript.crossOrigin = 'anonymous';
+                    newScript.async = true;
+                    
+                    for (var i = 0; i < utterancesScript.attributes.length; i++) {
+                        var attr = utterancesScript.attributes[i];
+                        if (attr.name !== 'src') {
+                            newScript.setAttribute(attr.name, attr.value);
+                        }
+                    }
+                    
+                    if (commentContainer.parentNode) {
+                        commentContainer.appendChild(newScript);
+                    }
+                }
+            } catch (e) {
+                console.log('Utterances load error:', e);
             }
         }</script></body></html>
