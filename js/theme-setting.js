@@ -1,5 +1,4 @@
-// author by removef
-// https://removeif.github.io/
+// theme settings
 
 function isNightFun() {
     var isNightTemp = localStorage.getExpire('night');

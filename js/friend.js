@@ -1,5 +1,4 @@
-// author by removef
-// https://removeif.github.io/
+// friend links
 $(function () { //获取处理友链数据
     $.getJSON("../json_data/friend.json", function (data) {
 

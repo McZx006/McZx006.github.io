@@ -1,5 +1,4 @@
-// author by removef
-// https://removeif.github.io/
+// author
 // $(function () { // 获取一句诗
 //     $.post("https://api.gushi.ci/all.json", {}, function (data, status) {
 //         var htmlC = "<blockquote>" + data.origin + "<br>\"" + data.content + "\"<br>–" + data.author + "</blockquote>";
