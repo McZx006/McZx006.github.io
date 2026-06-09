@@ -105,57 +105,70 @@
             try {
                 var commentContainer = document.getElementById('comment-container');
                 if (!commentContainer) {
+                    // 使用 MutationObserver 监听 comment-container 的出现
+                    var observer = new MutationObserver(function(mutations) {
+                        commentContainer = document.getElementById('comment-container');
+                        if (commentContainer) {
+                            observer.disconnect();
+                            loadCommentsOnContainer(commentContainer);
+                        }
+                    });
+                    observer.observe(document.body, { childList: true, subtree: true });
                     return;
                 }
                 
-                var existingScript = document.getElementById('comment-script');
-                if (existingScript) {
-                    existingScript.remove();
-                }
-                
-                var utterancesScript = commentContainer.querySelector('script[src*="utteranc.es"]');
-                var giscusScript = commentContainer.querySelector('script[src*="giscus.app"]');
-                
-                if (utterancesScript) {
-                    commentContainer.innerHTML = '';
-                    
-                    var newScript = document.createElement('script');
-                    newScript.id = 'comment-script';
-                    newScript.src = utterancesScript.src;
-                    newScript.crossOrigin = 'anonymous';
-                    newScript.async = true;
-                    
-                    for (var i = 0; i < utterancesScript.attributes.length; i++) {
-                        var attr = utterancesScript.attributes[i];
-                        if (attr.name !== 'src') {
-                            newScript.setAttribute(attr.name, attr.value);
-                        }
-                    }
-                    
-                    if (commentContainer.parentNode) {
-                        commentContainer.appendChild(newScript);
-                    }
-                } else if (giscusScript) {
-                    commentContainer.innerHTML = '';
-                    
-                    var newScript = document.createElement('script');
-                    newScript.id = 'comment-script';
-                    newScript.src = giscusScript.src;
-                    newScript.crossOrigin = 'anonymous';
-                    newScript.async = true;
-                    
-                    for (var i = 0; i < giscusScript.attributes.length; i++) {
-                        var attr = giscusScript.attributes[i];
-                        if (attr.name !== 'src') {
-                            newScript.setAttribute(attr.name, attr.value);
-                        }
-                    }
-                    
-                    if (commentContainer.parentNode) {
-                        commentContainer.appendChild(newScript);
-                    }
-                }
+                loadCommentsOnContainer(commentContainer);
             } catch (e) {
                 console.log('Comment load error:', e);
+            }
+        }
+        
+        function loadCommentsOnContainer(commentContainer) {
+            var existingScript = document.getElementById('comment-script');
+            if (existingScript) {
+                existingScript.remove();
+            }
+            
+            var utterancesScript = commentContainer.querySelector('script[src*="utteranc.es"]');
+            var giscusScript = commentContainer.querySelector('script[src*="giscus.app"]');
+            
+            if (utterancesScript) {
+                commentContainer.innerHTML = '';
+                
+                var newScript = document.createElement('script');
+                newScript.id = 'comment-script';
+                newScript.src = utterancesScript.src;
+                newScript.crossOrigin = 'anonymous';
+                newScript.async = true;
+                
+                for (var i = 0; i < utterancesScript.attributes.length; i++) {
+                    var attr = utterancesScript.attributes[i];
+                    if (attr.name !== 'src') {
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                }
+                
+                if (commentContainer.parentNode) {
+                    commentContainer.appendChild(newScript);
+                }
+            } else if (giscusScript) {
+                commentContainer.innerHTML = '';
+                
+                var newScript = document.createElement('script');
+                newScript.id = 'comment-script';
+                newScript.src = giscusScript.src;
+                newScript.crossOrigin = 'anonymous';
+                newScript.async = true;
+                
+                for (var i = 0; i < giscusScript.attributes.length; i++) {
+                    var attr = giscusScript.attributes[i];
+                    if (attr.name !== 'src') {
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                }
+                
+                if (commentContainer.parentNode) {
+                    commentContainer.appendChild(newScript);
+                }
             }
         }</script></body></html>
