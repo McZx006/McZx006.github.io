@@ -151,23 +151,32 @@
                     commentContainer.appendChild(newScript);
                 }
             } else if (giscusScript) {
-                commentContainer.innerHTML = '';
+                // 检查 giscus-frame 是否已存在，避免重复加载
+                var existingFrame = commentContainer.querySelector('iframe.giscus-frame');
+                if (existingFrame) {
+                    return; // Giscus 已加载，不再重复加载
+                }
                 
-                var newScript = document.createElement('script');
-                newScript.id = 'comment-script';
-                newScript.src = giscusScript.src;
-                newScript.crossOrigin = 'anonymous';
-                newScript.async = true;
-                
-                for (var i = 0; i < giscusScript.attributes.length; i++) {
-                    var attr = giscusScript.attributes[i];
-                    if (attr.name !== 'src') {
-                        newScript.setAttribute(attr.name, attr.value);
+                // 延迟加载，确保 DOM 完全准备好
+                setTimeout(function() {
+                    commentContainer.innerHTML = '';
+                    
+                    var newScript = document.createElement('script');
+                    newScript.id = 'comment-script';
+                    newScript.src = giscusScript.src;
+                    newScript.crossOrigin = 'anonymous';
+                    newScript.async = true;
+                    
+                    for (var i = 0; i < giscusScript.attributes.length; i++) {
+                        var attr = giscusScript.attributes[i];
+                        if (attr.name !== 'src') {
+                            newScript.setAttribute(attr.name, attr.value);
+                        }
                     }
-                }
-                
-                if (commentContainer.parentNode) {
-                    commentContainer.appendChild(newScript);
-                }
+                    
+                    if (commentContainer.parentNode) {
+                        commentContainer.appendChild(newScript);
+                    }
+                }, 100);
             }
         }</script></body></html>
