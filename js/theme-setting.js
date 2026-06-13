@@ -62,6 +62,9 @@ function switchNight() {
     if(typeof loadUtterances == 'function'){
         loadUtterances();
     }
+    if(typeof syncGiscusTheme == 'function'){
+        syncGiscusTheme();
+    }
 }
 
 findNightIcon();

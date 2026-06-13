@@ -88,6 +88,24 @@
             });
         };
 
+        function getGiscusTheme() {
+            return document.body.classList.contains('night') ? 'dark' : 'light';
+        }
+
+        function syncGiscusTheme() {
+            var frame = document.querySelector('iframe.giscus-frame');
+            if (!frame) return;
+            frame.contentWindow.postMessage({
+                giscus: {
+                    setConfig: {
+                        theme: getGiscusTheme()
+                    }
+                }
+            }, 'https://giscus.app');
+        }
+
+        window.syncGiscusTheme = syncGiscusTheme;
+
         // 开始 PJAX 执行的函数
         document.addEventListener('pjax:send', function () {
         });
@@ -165,6 +183,7 @@
                 // 检查 giscus-frame 是否已存在，避免重复加载
                 var existingFrame = commentContainer.querySelector('iframe.giscus-frame');
                 if (existingFrame) {
+                    syncGiscusTheme();
                     return; // Giscus 已加载，不再重复加载
                 }
 
@@ -186,11 +205,13 @@
                         'data-reactions-enabled': giscusConfig.reactions_enabled,
                         'data-emit-metadata': giscusConfig.emit_metadata,
                         'data-input-position': giscusConfig.input_position,
-                        'data-theme': giscusConfig.theme,
+                        'data-theme': getGiscusTheme(),
                         'data-lang': giscusConfig.lang,
                         crossorigin: 'anonymous'
                     };
                 }
+
+                giscusAttrs['data-theme'] = getGiscusTheme();
                 
                 // 延迟加载，确保 DOM 完全准备好
                 setTimeout(function() {
@@ -210,6 +231,7 @@
                     
                     if (commentContainer.parentNode) {
                         commentContainer.appendChild(newScript);
+                        setTimeout(syncGiscusTheme, 600);
                     }
                 }, 100);
             }
@@ -217,4 +239,5 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             loadComments();
+            setTimeout(syncGiscusTheme, 800);
         });</script></body></html>

@@ -12344,15 +12344,6 @@ hr {
   box-shadow: 0 16px 38px rgba(0,0,0,0.28);
   filter: unset !important;
 }
-.night .music-page__lyrics-button {
-  background: #3273dc;
-  border-color: #3273dc;
-  color: #fff;
-  filter: unset !important;
-}
-.night .music-page__lyrics-button:hover {
-  background: #4b8bf2;
-}
 .night .music-page .aplayer,
 .night .music-page .aplayer .aplayer-info,
 .night .music-page .aplayer .aplayer-list,
@@ -12994,27 +12985,6 @@ hr {
   box-shadow: 0 14px 34px rgba(31,45,61,0.08);
   padding: 1rem;
 }
-.music-page__toolbar {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0.9rem;
-}
-.music-page__lyrics-button {
-  background: #3273dc;
-  border: 1px solid #3273dc;
-  border-radius: 999px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 0.88rem;
-  font-weight: 800;
-  padding: 0.42rem 0.95rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-.music-page__lyrics-button:hover {
-  background: #2565c7;
-  box-shadow: 0 10px 24px rgba(50,115,220,0.22);
-  transform: translateY(-1px);
-}
 .music-page .aplayer {
   background: rgba(255,255,255,0.96) !important;
   border-radius: 10px !important;
@@ -13032,23 +13002,6 @@ hr {
 .music-page .aplayer .aplayer-lrc p.aplayer-lrc-current {
   color: #3273dc !important;
   font-weight: 800;
-}
-.music-page.is-lyrics-expanded .aplayer .aplayer-lrc {
-  height: 360px !important;
-  margin: 1rem 0 !important;
-  overflow-y: auto !important;
-}
-.music-page.is-lyrics-expanded .aplayer .aplayer-lrc:before,
-.music-page.is-lyrics-expanded .aplayer .aplayer-lrc:after {
-  display: none !important;
-}
-.music-page.is-lyrics-expanded .aplayer .aplayer-lrc-contents {
-  transform: none !important;
-}
-.music-page.is-lyrics-expanded .aplayer .aplayer-lrc p {
-  min-height: 1.8em;
-  opacity: 1 !important;
-  white-space: normal !important;
 }
 @media screen and (max-width: 768px) {
   .home-hero {
