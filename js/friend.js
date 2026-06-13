@@ -1,48 +1,66 @@
-// friend links
-$(function () { //获取处理友链数据
-    $.getJSON("../json_data/friend.json", function (data) {
-
-        // var data0 = data[0];
-        $('.links-content').html("");
-
-        // 随机排序过滤失效的
-        let notValid = data.filter((item, a, b) => item.valid == 0);
-        data = data.filter((item, a, b) => item.valid != 0).sort(function (a, b) {
-            return Math.random() > .5 ? -1 : 1;
+// Friend links are rendered from /json_data/friend.json so the page stays easy to maintain.
+$(function () {
+    function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, function (char) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[char];
         });
-        $('.links-content').append("<div class='friend-title-item'><br>大佬们<br><br><hr></div>");
-        $.each(data, function (i, e) {
-            var html = "<div class=\"friend-card-item\">";
-            if (e.src == undefined) {
-                html += "    <img class=\"ava\" src=\"/img/links/nopic.jpg\" title=\"图片链接不可用，使用的默认图片\">";
-            } else {
-                html += "    <img class=\"ava\" src=\"" + e.src + "\">";
-            }
-            html +=
-                "<div class='text-desc' title=\""+e.desc+"\">    网址：<a href=\"" + e.url + "\" target=\"_blank\">" + e.name + "</a>" +
-                "    <br>时间：" + e.date +
-                "<br>简介：" + e.desc + "</div>" +
-                "    </div>";
+    }
 
-            $('.links-content').append(html);
+    function renderCard(item, invalid) {
+        var avatar = item.src || '/img/avatar.png';
+        var name = item.name || item.url || '未命名站点';
+        var url = item.url || '#';
+        var date = invalid ? (item.stopTime || item.date || '未记录') : (item.date || '未记录');
+        var desc = item.desc || '这个朋友还没有留下简介。';
+        var timeLabel = invalid ? '状态' : '时间';
+
+        return [
+            '<article class="friend-card-item">',
+            '  <img class="ava" src="' + escapeHtml(avatar) + '" alt="' + escapeHtml(name) + '">',
+            '  <div class="friend-card-body">',
+            '    <div class="friend-card-name"><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(name) + '</a></div>',
+            '    <div class="friend-line"><span>网址：</span><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a></div>',
+            '    <div class="friend-line"><span>' + timeLabel + '：</span>' + escapeHtml(date) + '</div>',
+            '    <div class="friend-desc" data-full="' + escapeHtml(desc) + '"><span>简介：</span><span class="friend-desc-text">' + escapeHtml(desc) + '</span></div>',
+            '    <button class="friend-toggle" type="button" aria-expanded="false">展开简介</button>',
+            '  </div>',
+            '</article>'
+        ].join('');
+    }
+
+    $.getJSON('/json_data/friend.json', function (data) {
+        var validLinks = data.filter(function (item) { return item.valid !== 0; });
+        var invalidLinks = data.filter(function (item) { return item.valid === 0; });
+        var html = [];
+
+        html.push('<div class="friend-title-item">我的友链</div>');
+        validLinks.forEach(function (item) {
+            html.push(renderCard(item, false));
         });
 
-        // 过期的
-        if (notValid.length > 0) {
-            $('.links-content').append("<div class='friend-title-item'><br>异常的大佬们<br><br><hr></div></div>");
-            $.each(notValid, function (i, e) {
-                var html = "<div class=\"friend-card-item\">";
-                html += "    <img class=\"ava\" src=\"/img/links/nopic.jpg\" title=\"图片链接不可用，使用的默认图片\">";
-                html +=
-                    "<div class='text-desc' title=\""+e.desc+"\">    网址：<a href=\"" + e.url + "\" target=\"_blank\">" + e.name + "</a>" +
-                    "    <br>访问时间：" + e.stopTime +
-                    "<br>简介：" + e.desc + "</div>" +
-                    "    </div>";
-
-                $('.links-content').append(html);
-            })
+        if (invalidLinks.length > 0) {
+            html.push('<div class="friend-title-item">暂时无法访问</div>');
+            invalidLinks.forEach(function (item) {
+                html.push(renderCard(item, true));
+            });
         }
 
-        $('.links-content').append("</div>");
-    })
+        $('.links-content').html(html.join(''));
+    });
+
+    $('.links-content').on('click', '.friend-toggle', function () {
+        var $button = $(this);
+        var $desc = $button.siblings('.friend-desc');
+        var expanded = $button.attr('aria-expanded') === 'true';
+
+        $desc.toggleClass('is-expanded', !expanded);
+        $button.attr('aria-expanded', String(!expanded));
+        $button.text(expanded ? '展开简介' : '收起简介');
+    });
 });
