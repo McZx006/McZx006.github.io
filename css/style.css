@@ -12041,6 +12041,23 @@ hr {
 .night .navbar-link {
   color: #c0c0c0;
 }
+.night .navbar-menu .navbar-start .navbar-item,
+.night .navbar-menu .navbar-start .navbar-link,
+.night .navbar-menu .navbar-start .navbar-item.is-active,
+.night .navbar-menu .navbar-start .navbar-link.is-active {
+  background-color: transparent;
+  color: #c0c0c0;
+  filter: unset !important;
+}
+.night .navbar-menu .navbar-start .navbar-item:hover,
+.night .navbar-menu .navbar-start .navbar-link:hover,
+.night .navbar-menu .navbar-start .navbar-item:focus,
+.night .navbar-menu .navbar-start .navbar-link:focus,
+.night .navbar-menu .navbar-start .navbar-item:focus-within,
+.night .navbar-menu .navbar-start .navbar-link:focus-within {
+  background-color: transparent;
+  color: #3273dc;
+}
 .night .title {
   color: #c0c0c0;
 }
@@ -12274,14 +12291,14 @@ hr {
 .night .index-category-tag .article-more:hover {
   background-color: unset !important;
 }
-.night a.navbar-item:focus,
-.night .navbar-link:focus,
-.night a.navbar-item:focus-within,
-.night .navbar-link:focus-within,
-.night a.navbar-item:hover,
-.night .navbar-link:hover,
-.night a.navbar-item.is-active,
-.night .navbar-link.is-active {
+.night .navbar-end a.navbar-item:focus,
+.night .navbar-end .navbar-link:focus,
+.night .navbar-end a.navbar-item:focus-within,
+.night .navbar-end .navbar-link:focus-within,
+.night .navbar-end a.navbar-item:hover,
+.night .navbar-end .navbar-link:hover,
+.night .navbar-end a.navbar-item.is-active,
+.night .navbar-end .navbar-link.is-active {
   background-color: unset;
   color: #3273dc;
 }
@@ -12427,6 +12444,22 @@ body {
 .card,
 .footer {
   background-color: rgba(255,255,255,0.94);
+}
+.navbar-menu .navbar-start .navbar-item,
+.navbar-menu .navbar-start .navbar-link,
+.navbar-menu .navbar-start .navbar-item.is-active,
+.navbar-menu .navbar-start .navbar-link.is-active {
+  background-color: transparent;
+  color: #000;
+}
+.navbar-menu .navbar-start .navbar-item:hover,
+.navbar-menu .navbar-start .navbar-link:hover,
+.navbar-menu .navbar-start .navbar-item:focus,
+.navbar-menu .navbar-start .navbar-link:focus,
+.navbar-menu .navbar-start .navbar-item:focus-within,
+.navbar-menu .navbar-start .navbar-link:focus-within {
+  background-color: transparent;
+  color: #3273dc;
 }
 .img-x {
   position: relative;
