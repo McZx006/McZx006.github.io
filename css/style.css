@@ -12131,6 +12131,34 @@ hr {
 }
 .night .content blockquote {
   border-left: 3px solid #1e4584;
+  background: rgba(255,255,255,0.05);
+  color: #c0c0c0;
+}
+.night .content {
+  color: #c0c0c0;
+}
+.night .content a {
+  color: #7ab7ff;
+}
+.night .content p,
+.night .content li {
+  color: #c0c0c0;
+}
+.night .content code {
+  background: rgba(122,183,255,0.12);
+  border-color: rgba(122,183,255,0.18);
+  color: #a8ccff;
+  filter: unset !important;
+}
+.night .content pre code,
+.night figure.highlight code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+}
+.night figure.highlight,
+.night .content pre {
+  box-shadow: 0 14px 32px rgba(0,0,0,0.28);
 }
 .night .timeline {
   border-left: 1px solid rgba(219,219,219,0.439);
@@ -12409,6 +12437,9 @@ hr {
 .night .content h6 {
   color: #c0c0c0;
   font-weight: 800;
+}
+.night .content h2 {
+  border-bottom-color: rgba(255,255,255,0.12);
 }
 .night .navbar,
 .night footer.footer,
@@ -12768,9 +12799,76 @@ body {
 .content .gt-container .gt-comment-edit {
   margin-right: 2%;
 }
+.content {
+  color: #26313f;
+  font-size: 1rem;
+  line-height: 1.95;
+}
+.content a {
+  color: #2769d8;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
 .content a img {
   margin: auto;
   display: block;
+}
+.article.card,
+.card .article {
+  border-radius: 12px;
+}
+.article .title {
+  color: #172233;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.article .article-meta {
+  color: #7a8794;
+}
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  color: #172233;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin-top: 1.55em;
+}
+.content h2 {
+  border-bottom: 1px solid rgba(36,83,128,0.12);
+  padding-bottom: 0.35rem;
+}
+.content p {
+  margin: 0.9rem 0;
+}
+.content ul,
+.content ol {
+  padding-left: 1.35rem;
+}
+.content li + li {
+  margin-top: 0.25rem;
+}
+.content code {
+  background: rgba(50,115,220,0.08);
+  border: 1px solid rgba(50,115,220,0.12);
+  border-radius: 5px;
+  color: #1d4f9f;
+  font-size: 0.92em;
+  padding: 0.08rem 0.32rem;
+}
+.content pre code,
+figure.highlight code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 0;
+}
+figure.highlight,
+.content pre {
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(31,45,61,0.08);
+  overflow: hidden;
 }
 .content .gt-container .gt-comment-admin .gt-comment-content {
   border: 0.01em solid #deeafb;
