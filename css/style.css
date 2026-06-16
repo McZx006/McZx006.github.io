@@ -13404,3 +13404,36 @@ hr {
     font-size: 1.18rem;
   }
 }
+#waline-comment .wl-reaction {
+  margin-bottom: 1.25rem;
+  overflow: visible;
+}
+#waline-comment .wl-reaction-title {
+  margin: 0.75rem auto 0.85rem;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+#waline-comment .wl-reaction-list {
+  gap: 14px;
+  padding: 0.35rem 0.5rem 0.7rem;
+  overflow: visible;
+}
+#waline-comment .wl-reaction-img {
+  width: 32px;
+  height: 32px;
+}
+#waline-comment .wl-reaction-votes {
+  inset-inline-end: -7px;
+  top: -8px;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+@media screen and (max-width: 580px) {
+  #waline-comment .wl-reaction-list {
+    gap: 10px;
+  }
+  #waline-comment .wl-reaction-img {
+    width: 28px;
+    height: 28px;
+  }
+}
