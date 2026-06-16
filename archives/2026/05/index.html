@@ -36,70 +36,99 @@
             $.getScript('/js/echarts.min.js', function () { 
             let myChart = echarts.init(document.getElementById('post-calendar'));
             let isNight = document.body.classList.contains('night');
-            let calendarTextColor = isNight ? '#c8c8c8' : '#3C4858';
-            let calendarBorderColor = isNight ? '#151313' : '#fff';
-            let calendarBaseColor = isNight ? '#252525' : '#ebedf0';
+            let calendarTextColor = isNight ? '#aab2bf' : '#57606a';
+            let calendarTitleColor = isNight ? '#d8dee9' : '#24292f';
+            let calendarBorderColor = isNight ? '#0d1117' : '#ffffff';
+            let calendarBaseColor = isNight ? '#161b22' : '#ebedf0';
             let calendarRangeColor = isNight
-                ? ['#252525', '#17412f', '#236845', '#2f9a5e', '#55d987']
+                ? ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
                 : ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127'];
             let option = {
             title: {
-                top: 0,
+                top: 4,
                 text: '文章贡献',
-                left: '42%',
+                left: 0,
                 textStyle: {
-                    color: calendarTextColor
+                    color: calendarTitleColor,
+                    fontSize: 15,
+                    fontWeight: 700
                 }
             },
             tooltip: {
                 padding: 10,
-                backgroundColor: '#555',
-                borderColor: '#777',
+                backgroundColor: isNight ? '#161b22' : '#24292f',
+                borderColor: isNight ? '#30363d' : '#24292f',
                 borderWidth: 1,
+                textStyle: {
+                    color: '#fff'
+                },
                 formatter: function (obj) {
                     var value = obj.value;
-                    return '<div style="font-size: 14px;">' + value[0] + '：' + value[1] + '</div>';
+                    return '<div style="font-size: 13px;">' + value[0] + '：' + value[1] + ' 篇</div>';
                 }
             },
             visualMap: {
                 show: true,
-                showLabel: true,
+                showLabel: false,
                 min: 0,
                 max: 3,
-                calculable: true,
+                calculable: false,
+                type: 'piecewise',
+                pieces: [
+                    { min: 0, max: 0, color: calendarRangeColor[0] },
+                    { min: 1, max: 1, color: calendarRangeColor[1] },
+                    { min: 2, max: 2, color: calendarRangeColor[2] },
+                    { min: 3, max: 3, color: calendarRangeColor[3] },
+                    { min: 4, color: calendarRangeColor[4] }
+                ],
                 inRange: {
                     symbol: 'rect',
                     color: calendarRangeColor
                 },
-                itemWidth: 12,
-                itemHeight: 12,
+                itemWidth: 10,
+                itemHeight: 10,
+                itemGap: 4,
                 orient: 'horizontal',
-                left: '35%',
-                bottom: 0
+                right: 0,
+                bottom: 4,
+                text: ['多', '少'],
+                textStyle: {
+                    color: calendarTextColor,
+                    fontSize: 11
+                }
             },
             calendar: [{
-                left: 'center',
+                top: 38,
+                left: 38,
+                right: 6,
+                bottom: 34,
                 range: ["2026-01-01", "2026-12-31"],
-                cellSize: [13, 13],
+                cellSize: [12, 12],
                 splitLine: {
                     show: false
                 },
                 itemStyle: {
                     color: calendarBaseColor,
                     borderColor: calendarBorderColor,
-                    borderWidth: 2
+                    borderWidth: 2,
+                    borderRadius: 2
                 },
                 yearLabel: {
                     show: false
                 },
                 monthLabel: {
                     nameMap: 'cn',
+                    margin: 7,
                     fontSize: 11,
                     color: calendarTextColor
                 },
                 dayLabel: {
-                    formatter: '{start}  1st',
+                    firstDay: 0,
+                    margin: 8,
                     nameMap: 'cn',
+                    formatter: function (name) {
+                        return name === 'Mon' || name === 'Wed' || name === 'Fri' || name === '一' || name === '三' || name === '五' ? name : '';
+                    },
                     fontSize: 11,
                     color: calendarTextColor
                 }
