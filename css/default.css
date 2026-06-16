@@ -13144,3 +13144,263 @@ hr {
     padding: 2.4rem 1.55rem;
   }
 }
+.friend-apply-entry {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem 0 1.5rem;
+  text-align: center;
+}
+.friend-apply-toggle {
+  align-items: center;
+  appearance: none;
+  background: linear-gradient(135deg, #ff7b83, #ff5f6d);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 14px 28px rgba(255,95,109,0.22);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.12rem;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: 3rem;
+  min-width: 10.2rem;
+  padding: 0.78rem 1.25rem;
+  position: relative;
+  text-align: center;
+  text-shadow: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+.friend-apply-toggle:hover {
+  background: linear-gradient(135deg, #ff8b92, #ff5a68);
+  box-shadow: 0 18px 34px rgba(255,95,109,0.3);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.friend-apply-toggle:active {
+  transform: translateY(0);
+}
+.friend-apply-toggle:focus-visible {
+  outline: 3px solid rgba(255,95,109,0.28);
+  outline-offset: 4px;
+}
+.friend-apply-modal {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  padding: 1.25rem;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+.friend-apply-modal[hidden] {
+  display: none !important;
+}
+.friend-apply-modal.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.friend-apply-backdrop {
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.52);
+  inset: 0;
+  position: absolute;
+}
+.friend-apply-dialog {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid #dfe6f0;
+  border-radius: 8px;
+  box-shadow: 0 22px 60px rgba(28,38,54,0.12);
+  max-height: 88vh;
+  max-width: 32.2rem;
+  overflow: auto;
+  padding: 1.35rem 1.9rem 1.45rem;
+  position: relative;
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.2s ease;
+  width: 32.2rem;
+}
+.friend-apply-dialog > .friend-title-item {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  color: #222;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 1.2rem;
+  padding: 0 2.4rem 1rem 0;
+  text-align: left;
+}
+.friend-apply-modal.is-active .friend-apply-dialog {
+  transform: translateY(0) scale(1);
+}
+.friend-apply-close {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: #222;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.7rem;
+  height: 2rem;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: 1.35rem;
+  top: 1.25rem;
+  width: 2rem;
+}
+.friend-apply-close:hover {
+  background: rgba(0,0,0,0.06);
+}
+.friend-site-info {
+  background: #fff7f8;
+  border: 1px solid rgba(255,95,109,0.16);
+  border-radius: 8px;
+  color: #6f7580;
+  margin: 0 0 1.3rem;
+  padding: 0.8rem 0.95rem;
+}
+.friend-site-info-title {
+  color: #ff5f6d;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+.friend-site-info-row {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.friend-site-info-row span {
+  color: #333;
+  font-weight: 800;
+}
+.friend-apply-form {
+  display: grid;
+  gap: 1.15rem;
+}
+.friend-apply-form input,
+.friend-apply-form textarea {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  color: #222;
+  font-size: 1rem;
+  min-height: 3.15rem;
+  padding: 0.78rem 1rem;
+  width: 100%;
+}
+.friend-apply-form input:focus,
+.friend-apply-form textarea:focus {
+  border-color: rgba(255,95,109,0.46);
+  box-shadow: 0 0 0 3px rgba(255,95,109,0.12);
+  outline: 0;
+}
+.friend-apply-form textarea {
+  min-height: 3.25rem;
+  resize: vertical;
+}
+.friend-apply-form button {
+  background: linear-gradient(135deg, #ff7b83, #ff5f6d);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(255,95,109,0.2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 800;
+  justify-self: center;
+  min-width: 5.5rem;
+  padding: 0.72rem 1.15rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.friend-apply-form button:hover {
+  background: linear-gradient(135deg, #ff8b92, #ff5a68);
+  box-shadow: 0 14px 28px rgba(255,95,109,0.28);
+  transform: translateY(-1px);
+}
+#friend-apply-status {
+  color: #666;
+  margin: 0;
+}
+.friend-apply-open {
+  overflow: hidden;
+}
+.night .friend-apply-toggle {
+  background: linear-gradient(135deg, #ff7b83, #ff5f6d);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.32), 0 0 0 1px rgba(255,255,255,0.05);
+  color: #fff;
+}
+.night .friend-apply-toggle:hover {
+  background: linear-gradient(135deg, #ff8b92, #ff5a68);
+  box-shadow: 0 18px 40px rgba(255,95,109,0.18);
+  color: #fff;
+}
+.night .friend-apply-backdrop {
+  background: rgba(0,0,0,0.55);
+}
+.night .friend-apply-dialog {
+  background: rgba(24,24,24,0.97);
+  border-color: rgba(255,255,255,0.12);
+  color: #eee;
+}
+.night .friend-apply-dialog > .friend-title-item {
+  border-bottom-color: rgba(255,255,255,0.18);
+  color: #fff;
+}
+.night .friend-site-info {
+  background: rgba(255,95,109,0.08);
+  border-color: rgba(255,95,109,0.18);
+  color: #c8c8c8;
+}
+.night .friend-site-info-title {
+  color: #ff9aa2;
+}
+.night .friend-site-info-row span {
+  color: #eee;
+}
+.night .friend-apply-close {
+  background: rgba(255,255,255,0.1);
+  color: #eee;
+}
+.night .friend-apply-close:hover {
+  background: rgba(255,255,255,0.18);
+}
+.night .friend-apply-form input,
+.night .friend-apply-form textarea {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.14);
+  color: #eee;
+}
+.night .friend-apply-form input:focus,
+.night .friend-apply-form textarea:focus {
+  border-color: rgba(255,154,162,0.5);
+  box-shadow: 0 0 0 3px rgba(255,95,109,0.16);
+}
+.night #friend-apply-status {
+  color: #aaa;
+}
+@media screen and (max-width: 768px) {
+  .friend-apply-entry {
+    margin: 1.75rem 0 1rem;
+  }
+  .friend-apply-toggle {
+    font-size: 1.05rem;
+    min-height: 2.85rem;
+    min-width: 9.8rem;
+    padding: 0.72rem 1.15rem;
+  }
+  .friend-apply-dialog {
+    padding: 1.15rem;
+  }
+  .friend-apply-dialog > .friend-title-item {
+    font-size: 1.18rem;
+  }
+}
