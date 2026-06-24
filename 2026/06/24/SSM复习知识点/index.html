@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta><title>SSM复习知识点 - zx006的个人博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="zx006的个人博客"><meta name="msapplication-TileImage" content="/img/site-avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="zx006的个人博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="记录日常、想法和一点点技术。"><meta property="og:type" content="blog"><meta property="og:title" content="辣椒の酱"><meta property="og:url" content="https://mczx006.github.io/"><meta property="og:site_name" content="辣椒の酱"><meta property="og:description" content="记录日常、想法和一点点技术。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://mczx006.github.io/img/site-avatar.png"><meta property="article:published_time" content="2026-06-23T17:45:45.000Z"><meta property="article:modified_time" content="2026-06-24T02:32:38.322Z"><meta property="article:author" content="zx006"><meta property="article:tag" content="Java"><meta property="article:tag" content="SSM"><meta property="article:tag" content="Spring"><meta property="article:tag" content="MyBatis"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://mczx006.github.io/img/site-avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://mczx006.github.io/2026/06/24/SSM%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9/"},"headline":"zx006的个人博客","image":["https://mczx006.github.io/img/posts/cover-ref-01.jpg"],"datePublished":"2026-06-23T17:45:45.000Z","dateModified":"2026-06-24T02:32:38.322Z","author":{"@type":"Person","name":"zx006"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject"}},"description":"记录日常、想法和一点点技术。"}</script><link rel="canonical" href="https://mczx006.github.io/2026/06/24/SSM%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9/"><link rel="icon" href="/img/site-avatar.png"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css"><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item" href="/">zx006的个人博客</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/album">相册</a><a class="navbar-item" href="/message">留言板</a><a class="navbar-item" href="/self-talking">碎碎念</a><a class="navbar-item" href="/music">音乐盒</a><a class="navbar-item" href="/friend">友链</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/McZx006"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/posts/cover-ref-01.jpg" alt="SSM复习知识点" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=&#039;/img/og_image.png&#039;;"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2026-06-24  <a class="commentCountImg" href="/2026/06/24/SSM%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9/#comment-container"><span class="display-none-class">/2026/06/24/SSM复习知识点/</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="6782e00f4851274e34d7cd7ac2251fa4">0</span>  </a><span class="level-item"><i class="far fa-clock"> </i>1 小时  <i class="fas fa-pencil-alt"> </i>6.7 k</span></div></div><h1 class="title is-3 is-size-4-mobile">SSM复习知识点</h1><div class="content"><p>针对河南农业大学软工专业大三上《软件开发框架Ⅱ》的期末复习知识点</p>
+<p><strong>Spring + Spring MVC + MyBatis</strong></p>
+<p>它主要复习 Java 后端开发里非常经典的一套技术组合：<br><strong>Spring 负责管理对象和业务逻辑，Spring MVC 负责处理网页&#x2F;API 请求，MyBatis 负责操作数据库。</strong><br>PPT 分成 Spring Core、Spring AOP、MyBatis、Spring MVC、综合应用五大部分。</p>
+<hr>
+<h1 id="一、先搞懂-SSM-是什么"><a href="#一、先搞懂-SSM-是什么" class="headerlink" title="一、先搞懂 SSM 是什么"></a>一、先搞懂 SSM 是什么</h1><p>SSM 是三个框架的组合：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>主要作用</th>
+<th>通俗理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring</td>
+<td>管理对象、管理业务、管理事务</td>
+<td>后台“大管家”</td>
+</tr>
+<tr>
+<td>Spring MVC</td>
+<td>接收浏览器&#x2F;前端请求，返回页面或 JSON</td>
+<td>门口“接待员”</td>
+</tr>
+<tr>
+<td>MyBatis</td>
+<td>操作数据库，执行 SQL</td>
+<td>数据库“翻译官”</td>
+</tr>
+</tbody></table>
+<p>比如你做一个“学生管理系统”：</p>
+<p>用户点击“查询学生”<br>→ Spring MVC 接收请求<br>→ 调用 Service 业务层<br>→ Service 调用 MyBatis 查询数据库<br>→ 数据库返回学生数据<br>→ Spring MVC 把结果返回给前端。</p>
+<p>这就是 SSM 的典型工作流程。</p>
+<hr>
+<h1 id="二、Spring-Core：Spring-的核心"><a href="#二、Spring-Core：Spring-的核心" class="headerlink" title="二、Spring Core：Spring 的核心"></a>二、Spring Core：Spring 的核心</h1><h2 id="1-IoC：控制反转"><a href="#1-IoC：控制反转" class="headerlink" title="1. IoC：控制反转"></a>1. IoC：控制反转</h2><p>PPT 里第一个重点是 <strong>IoC</strong>，英文是：</p>
+<p><strong>Inversion of Control，控制反转。</strong></p>
+<p>你先记一句话：</p>
+<blockquote>
+<p>IoC 就是：对象不用你自己 new，而是交给 Spring 容器来创建和管理。</p>
+</blockquote>
+<p>以前我们写代码可能这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UserDao</span> <span class="variable">userDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>();</span><br><span class="line"><span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserServiceImpl</span>(userDao);</span><br></pre></td></tr></table></figure>
+
+<p>这表示程序员自己创建对象。</p>
+<p>用了 Spring 后，你不直接 <code>new</code>，而是告诉 Spring：</p>
+<blockquote>
+<p>这些类你帮我创建，需要的时候你帮我拿来用。</p>
+</blockquote>
+<p>Spring 就像一个“大仓库”或者“外卖平台”。</p>
+<p>你想吃披萨，不用自己买面粉、揉面、烤披萨。<br>你只需要点外卖，平台帮你安排。</p>
+<p>同理：</p>
+<p>你想用 <code>UserService</code>，不用自己 new。<br>Spring 容器帮你创建好，然后注入给你。</p>
+<hr>
+<h2 id="2-DI：依赖注入"><a href="#2-DI：依赖注入" class="headerlink" title="2. DI：依赖注入"></a>2. DI：依赖注入</h2><p>DI 是：</p>
+<p><strong>Dependency Injection，依赖注入。</strong></p>
+<p>它和 IoC 经常放在一起讲。</p>
+<p>IoC 说的是：</p>
+<blockquote>
+<p>对象由 Spring 创建。</p>
+</blockquote>
+<p>DI 说的是：</p>
+<blockquote>
+<p>对象需要的其他对象，也由 Spring 自动塞进去。</p>
+</blockquote>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>UserService</code> 要依赖 <code>UserDao</code>。<br>没有 <code>UserDao</code>，它就没法查数据库。</p>
+<p>以前你要自己写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userService.setUserDao(<span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>());</span><br></pre></td></tr></table></figure>
+
+<p>现在 Spring 可以自动帮你注入。</p>
+<hr>
+<h2 id="3-Bean-是什么"><a href="#3-Bean-是什么" class="headerlink" title="3. Bean 是什么"></a>3. Bean 是什么</h2><p>PPT 多次提到 <strong>Bean</strong>。</p>
+<p>你可以先简单理解：</p>
+<blockquote>
+<p>被 Spring 容器管理的对象，就叫 Bean。</p>
+</blockquote>
+<p>比如这些类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDaoImpl</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要它们被 Spring 扫描并创建出来，它们就是 Bean。</p>
+<p>Bean 不是一种特殊的 Java 类，它本质上就是普通对象，只不过由 Spring 管理。</p>
+<hr>
+<h2 id="4-Spring-IoC-容器负责什么"><a href="#4-Spring-IoC-容器负责什么" class="headerlink" title="4. Spring IoC 容器负责什么"></a>4. Spring IoC 容器负责什么</h2><p>PPT 里讲了 IoC 容器的四个职责：</p>
+<h3 id="第一，创建对象"><a href="#第一，创建对象" class="headerlink" title="第一，创建对象"></a>第一，创建对象</h3><p>比如创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UserServiceImpl</span> <span class="variable">userService</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserServiceImpl</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这个过程交给 Spring 完成。</p>
+<hr>
+<h3 id="第二，依赖注入"><a href="#第二，依赖注入" class="headerlink" title="第二，依赖注入"></a>第二，依赖注入</h3><p>比如 <code>UserService</code> 需要 <code>UserDao</code>，Spring 自动注入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>@Autowired</code> 表示：</p>
+<blockquote>
+<p>Spring，请你帮我把合适的 UserDao 对象注入进来。</p>
+</blockquote>
+<hr>
+<h3 id="第三，生命周期管理"><a href="#第三，生命周期管理" class="headerlink" title="第三，生命周期管理"></a>第三，生命周期管理</h3><p>对象从创建到销毁，有完整过程：</p>
+<ol>
+<li>创建对象</li>
+<li>注入属性</li>
+<li>初始化</li>
+<li>使用</li>
+<li>销毁</li>
+</ol>
+<p>Spring 可以控制这些阶段。</p>
+<p>比如数据库连接、线程池、缓存等资源，需要初始化和销毁，Spring 可以统一管理。</p>
+<hr>
+<h3 id="第四，配置管理"><a href="#第四，配置管理" class="headerlink" title="第四，配置管理"></a>第四，配置管理</h3><p>Spring 可以统一管理配置。</p>
+<p>比如数据库地址：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jdbc.url</span>=<span class="string">jdbc:mysql://localhost:3306/mydb</span></span><br><span class="line"><span class="attr">jdbc.user</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">jdbc.password</span>=<span class="string">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>这些配置可以放在外部文件里，不写死在 Java 代码中。</p>
+<p>这样以后换数据库地址，不用改 Java 源码，只改配置文件即可。</p>
+<hr>
+<h1 id="三、依赖注入的两种方式"><a href="#三、依赖注入的两种方式" class="headerlink" title="三、依赖注入的两种方式"></a>三、依赖注入的两种方式</h1><p>PPT 重点讲了两种：</p>
+<ol>
+<li>Setter 注入</li>
+<li>构造函数注入</li>
+</ol>
+<hr>
+<h2 id="1-Setter-注入"><a href="#1-Setter-注入" class="headerlink" title="1. Setter 注入"></a>1. Setter 注入</h2><p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setUserDao</span><span class="params">(UserDao userDao)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.userDao = userDao;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<p>Spring 创建 <code>UserServiceImpl</code> 后，再调用 <code>setUserDao()</code> 方法，把 <code>UserDao</code> 传进去。</p>
+<p>优点：</p>
+<p>灵活，可以后期修改依赖。</p>
+<p>缺点：</p>
+<p>对象刚创建出来时，可能还没有依赖。<br>如果在注入前就使用，可能出现空指针异常。</p>
+<hr>
+<h2 id="2-构造函数注入"><a href="#2-构造函数注入" class="headerlink" title="2. 构造函数注入"></a>2. 构造函数注入</h2><p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserServiceImpl</span><span class="params">(UserDao userDao)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.userDao = userDao;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<p>创建 <code>UserServiceImpl</code> 的时候，必须传入 <code>UserDao</code>。</p>
+<p>优点：</p>
+<p>对象一创建就是完整的。<br>不会出现“对象创建了，但依赖还没注入”的问题。</p>
+<p>PPT 里也强调：<br><strong>构造函数注入更安全，是推荐方式。</strong></p>
+<p>你可以记：</p>
+<blockquote>
+<p>必须依赖，用构造函数注入；可选依赖，可以用 Setter 注入。</p>
+</blockquote>
+<hr>
+<h1 id="四、Bean-作用域和组件扫描"><a href="#四、Bean-作用域和组件扫描" class="headerlink" title="四、Bean 作用域和组件扫描"></a>四、Bean 作用域和组件扫描</h1><h2 id="1-Singleton-单例"><a href="#1-Singleton-单例" class="headerlink" title="1. Singleton 单例"></a>1. Singleton 单例</h2><p>PPT 说 Spring Bean 默认作用域是：</p>
+<p><strong>Singleton，单例。</strong></p>
+<p>意思是：</p>
+<blockquote>
+<p>一个 Bean 在 Spring 容器里通常只有一个对象。</p>
+</blockquote>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UserService</span> <span class="variable">userService1</span> <span class="operator">=</span> context.getBean(UserService.class);</span><br><span class="line"><span class="type">UserService</span> <span class="variable">userService2</span> <span class="operator">=</span> context.getBean(UserService.class);</span><br></pre></td></tr></table></figure>
+
+<p>这两个拿到的其实是同一个对象。</p>
+<p>通俗理解：</p>
+<p>一个班级只有一个班主任对象，大家都找同一个班主任。</p>
+<hr>
+<h2 id="2-单例适合什么场景"><a href="#2-单例适合什么场景" class="headerlink" title="2. 单例适合什么场景"></a>2. 单例适合什么场景</h2><p>适合：</p>
+<ul>
+<li>Service</li>
+<li>DAO</li>
+<li>工具类</li>
+<li>Controller</li>
+</ul>
+<p>因为它们通常不保存每个用户自己的数据。</p>
+<hr>
+<h2 id="3-单例要注意线程安全"><a href="#3-单例要注意线程安全" class="headerlink" title="3. 单例要注意线程安全"></a>3. 单例要注意线程安全</h2><p>如果一个单例对象里面保存了可变数据，就可能出问题。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果多个用户同时访问这个 Service，大家都改 <code>username</code>，就可能互相影响。</p>
+<p>所以一般 Service 里面不要保存用户状态。</p>
+<hr>
+<h2 id="4-组件扫描是什么"><a href="#4-组件扫描是什么" class="headerlink" title="4. 组件扫描是什么"></a>4. 组件扫描是什么</h2><p>PPT 讲了组件扫描：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.example&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者 Java 配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(basePackages = &quot;com.example&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<blockquote>
+<p>Spring 去指定包下面扫描类，看看哪些类上有注解，如果有，就把它们创建成 Bean。</p>
+</blockquote>
+<p>常见注解：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>用在哪一层</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Repository</code></td>
+<td>DAO 层</td>
+<td>数据访问层，操作数据库</td>
+</tr>
+<tr>
+<td><code>@Service</code></td>
+<td>Service 层</td>
+<td>业务逻辑层</td>
+</tr>
+<tr>
+<td><code>@Controller</code></td>
+<td>Controller 层</td>
+<td>控制层，处理网页请求</td>
+</tr>
+<tr>
+<td><code>@Component</code></td>
+<td>通用组件</td>
+<td>不好归类时使用</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="五、Spring-AOP：面向切面编程"><a href="#五、Spring-AOP：面向切面编程" class="headerlink" title="五、Spring AOP：面向切面编程"></a>五、Spring AOP：面向切面编程</h1><p>现在进入第二章。</p>
+<p>AOP 是：</p>
+<p><strong>Aspect-Oriented Programming，面向切面编程。</strong></p>
+<p>你先记住：</p>
+<blockquote>
+<p>AOP 用来处理很多地方都需要的“公共功能”。</p>
+</blockquote>
+<p>比如：</p>
+<ul>
+<li>日志记录</li>
+<li>权限校验</li>
+<li>事务管理</li>
+<li>性能统计</li>
+<li>异常处理</li>
+</ul>
+<p>这些功能不是核心业务，但很多地方都要用。</p>
+<hr>
+<h2 id="1-为什么需要-AOP"><a href="#1-为什么需要-AOP" class="headerlink" title="1. 为什么需要 AOP"></a>1. 为什么需要 AOP</h2><p>假设你有很多方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">addUser()</span><br><span class="line">deleteUser()</span><br><span class="line">updateUser()</span><br><span class="line">queryUser()</span><br></pre></td></tr></table></figure>
+
+<p>每个方法都要记录日志。</p>
+<p>如果不用 AOP，你可能每个方法都写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;开始执行&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;执行结束&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>代码就会重复。</p>
+<p>AOP 的思想是：</p>
+<blockquote>
+<p>把这些公共代码单独抽出来，在方法执行前后自动插进去。</p>
+</blockquote>
+<p>这样业务代码只写业务。</p>
+<hr>
+<h1 id="六、AOP-的代理机制"><a href="#六、AOP-的代理机制" class="headerlink" title="六、AOP 的代理机制"></a>六、AOP 的代理机制</h1><p>PPT 讲了两种底层代理：</p>
+<ol>
+<li>JDK 动态代理</li>
+<li>CGLIB 代理</li>
+</ol>
+<hr>
+<h2 id="1-代理是什么"><a href="#1-代理是什么" class="headerlink" title="1. 代理是什么"></a>1. 代理是什么</h2><p>代理可以理解为“中间人”。</p>
+<p>比如你要找明星拍广告，你一般不会直接找明星本人，而是找经纪人。<br>经纪人可以在中间加流程，比如谈价格、签合同、安排时间。</p>
+<p>在 Spring AOP 中，代理对象也是类似：</p>
+<p>你以为你调用的是原对象，实际上先经过代理对象。<br>代理对象可以在方法前后加功能。</p>
+<hr>
+<h2 id="2-JDK-动态代理"><a href="#2-JDK-动态代理" class="headerlink" title="2. JDK 动态代理"></a>2. JDK 动态代理</h2><p>特点：</p>
+<blockquote>
+<p>要求目标类必须实现接口。</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">addUser</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addUser</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;添加用户&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果有接口，Spring 默认可以使用 JDK 动态代理。</p>
+<p>优点：</p>
+<ul>
+<li>Java 原生支持</li>
+<li>不需要额外依赖</li>
+<li>适合面向接口编程</li>
+</ul>
+<p>限制：</p>
+<ul>
+<li>必须有接口</li>
+</ul>
+<hr>
+<h2 id="3-CGLIB-代理"><a href="#3-CGLIB-代理" class="headerlink" title="3. CGLIB 代理"></a>3. CGLIB 代理</h2><p>如果类没有实现接口，Spring 可以用 CGLIB。</p>
+<p>CGLIB 的方式是：</p>
+<blockquote>
+<p>生成目标类的子类，通过继承来增强方法。</p>
+</blockquote>
+<p>例如原来有：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addUser</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>CGLIB 会创建一个类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceProxy</span> <span class="keyword">extends</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>限制：</p>
+<ul>
+<li>目标类不能是 <code>final</code></li>
+<li>方法不能是 <code>final</code></li>
+<li>私有方法不能被代理</li>
+</ul>
+<p>因为 final 类不能被继承，final 方法不能被重写。</p>
+<hr>
+<h1 id="七、AOP-的通知类型"><a href="#七、AOP-的通知类型" class="headerlink" title="七、AOP 的通知类型"></a>七、AOP 的通知类型</h1><p>PPT 讲了五种 Advice，也就是通知。</p>
+<p>通知就是：</p>
+<blockquote>
+<p>切面代码在什么时候执行。</p>
+</blockquote>
+<hr>
+<h2 id="Before-前置通知"><a href="#Before-前置通知" class="headerlink" title="@Before 前置通知"></a><code>@Before</code> 前置通知</h2><p>目标方法执行前运行。</p>
+<p>适合：</p>
+<ul>
+<li>权限校验</li>
+<li>参数检查</li>
+<li>打印开始日志</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(&quot;execution(* com.example.service.*.*(..))&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;方法执行前&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-AfterReturning-后置通知"><a href="#2-AfterReturning-后置通知" class="headerlink" title="2. @AfterReturning 后置通知"></a>2. <code>@AfterReturning</code> 后置通知</h2><p>目标方法正常执行完后运行。</p>
+<p>注意：只有没有异常，才会执行。</p>
+<p>适合：</p>
+<ul>
+<li>获取返回值</li>
+<li>成功日志</li>
+<li>缓存更新</li>
+</ul>
+<hr>
+<h2 id="3-Around-环绕通知"><a href="#3-Around-环绕通知" class="headerlink" title="3. @Around 环绕通知"></a>3. <code>@Around</code> 环绕通知</h2><p>最强大。</p>
+<p>它可以包住整个方法：</p>
+<ul>
+<li>方法前做事</li>
+<li>决定是否执行原方法</li>
+<li>方法后做事</li>
+<li>捕获异常</li>
+<li>修改返回值</li>
+</ul>
+<p>通俗理解：</p>
+<p><code>@Around</code> 像完整包围目标方法的一层壳。</p>
+<hr>
+<h2 id="4-AfterThrowing-异常通知"><a href="#4-AfterThrowing-异常通知" class="headerlink" title="4. @AfterThrowing 异常通知"></a>4. <code>@AfterThrowing</code> 异常通知</h2><p>只有目标方法抛异常时才执行。</p>
+<p>适合：</p>
+<ul>
+<li>错误日志</li>
+<li>异常告警</li>
+<li>事务回滚辅助</li>
+</ul>
+<hr>
+<h2 id="5-After-最终通知"><a href="#5-After-最终通知" class="headerlink" title="5. @After 最终通知"></a>5. <code>@After</code> 最终通知</h2><p>无论方法成功还是失败，都会执行。</p>
+<p>类似 Java 里的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// 一定执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>适合：</p>
+<ul>
+<li>释放资源</li>
+<li>清理临时变量</li>
+<li>关闭连接</li>
+</ul>
+<hr>
+<h1 id="八、声明式事务：-Transactional"><a href="#八、声明式事务：-Transactional" class="headerlink" title="八、声明式事务：@Transactional"></a>八、声明式事务：<code>@Transactional</code></h1><p>这一块很重要。</p>
+<p>事务是什么？</p>
+<blockquote>
+<p>事务就是一组数据库操作，要么全部成功，要么全部失败。</p>
+</blockquote>
+<p>经典例子：转账。</p>
+<p>A 给 B 转 100 元：</p>
+<ol>
+<li>A 余额减少 100</li>
+<li>B 余额增加 100</li>
+</ol>
+<p>这两个操作必须一起成功。</p>
+<p>如果 A 扣钱成功，B 加钱失败，就出大问题。</p>
+<p>所以要事务。</p>
+<hr>
+<h2 id="1-Transactional-是什么"><a href="#1-Transactional-是什么" class="headerlink" title="1. @Transactional 是什么"></a>1. <code>@Transactional</code> 是什么</h2><p>PPT 说：</p>
+<p><code>@Transactional</code> 基于 Spring AOP 动态代理实现。</p>
+<p>你可以理解为：</p>
+<blockquote>
+<p>Spring 在方法执行前自动开启事务，方法成功后提交事务，方法出错后回滚事务。</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">()</span> &#123;</span><br><span class="line">    accountDao.minusMoney();</span><br><span class="line">    accountDao.addMoney();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你不需要手动写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">connection.commit();</span><br><span class="line">connection.rollback();</span><br></pre></td></tr></table></figure>
+
+<p>Spring 帮你做。</p>
+<hr>
+<h2 id="2-事务传播行为"><a href="#2-事务传播行为" class="headerlink" title="2. 事务传播行为"></a>2. 事务传播行为</h2><p>PPT 重点讲了两个：</p>
+<h3 id="REQUIRED"><a href="#REQUIRED" class="headerlink" title="REQUIRED"></a>REQUIRED</h3><p>默认值。</p>
+<p>意思是：</p>
+<blockquote>
+<p>如果当前有事务，就加入当前事务；如果没有事务，就新建一个事务。</p>
+</blockquote>
+<p>这是最常用的。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodA</span><span class="params">()</span> &#123;</span><br><span class="line">    methodB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>methodB()</code> 也是 REQUIRED，它会加入 <code>methodA()</code> 的事务。</p>
+<hr>
+<h3 id="REQUIRES-NEW"><a href="#REQUIRES-NEW" class="headerlink" title="REQUIRES_NEW"></a>REQUIRES_NEW</h3><p>意思是：</p>
+<blockquote>
+<p>不管当前有没有事务，都新开一个事务。</p>
+</blockquote>
+<p>如果原来有事务，先挂起原事务。</p>
+<p>常见场景：</p>
+<p>比如主业务失败了，但日志必须保存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">buy</span><span class="params">()</span> &#123;</span><br><span class="line">    orderService.createOrder();</span><br><span class="line">    logService.saveLog(); <span class="comment">// 可以用 REQUIRES_NEW</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果日志方法用 <code>REQUIRES_NEW</code>，即使订单事务回滚，日志事务也可以单独提交。</p>
+<hr>
+<h2 id="3-默认什么异常会回滚"><a href="#3-默认什么异常会回滚" class="headerlink" title="3. 默认什么异常会回滚"></a>3. 默认什么异常会回滚</h2><p>PPT 里说得很关键：</p>
+<p>Spring 默认只对：</p>
+<ul>
+<li><code>RuntimeException</code></li>
+<li><code>Error</code></li>
+</ul>
+<p>进行回滚。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();</span><br></pre></td></tr></table></figure>
+
+<p>会回滚。</p>
+<p>但是像：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>();</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">SQLException</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这些受检异常默认不一定回滚。</p>
+<p>如果你想让这些异常也回滚，要写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor = Exception.class)</span></span><br></pre></td></tr></table></figure>
+
+<p>这句话考试和面试都很常见。</p>
+<hr>
+<h1 id="九、MyBatis：操作数据库的框架"><a href="#九、MyBatis：操作数据库的框架" class="headerlink" title="九、MyBatis：操作数据库的框架"></a>九、MyBatis：操作数据库的框架</h1><p>MyBatis 是持久层框架。</p>
+<p>持久层就是：</p>
+<blockquote>
+<p>和数据库打交道的那一层。</p>
+</blockquote>
+<p>比如：</p>
+<ul>
+<li>查询用户</li>
+<li>添加订单</li>
+<li>修改商品</li>
+<li>删除评论</li>
+</ul>
+<p>这些都属于数据库操作。</p>
+<hr>
+<h1 id="十、MyBatis-的-和"><a href="#十、MyBatis-的-和" class="headerlink" title="十、MyBatis 的 #{} 和 ${}"></a>十、MyBatis 的 <code>#&#123;&#125;</code> 和 <code>$&#123;&#125;</code></h1><p>PPT 重点讲了：</p>
+<ol>
+<li><code>#&#123;&#125;</code></li>
+<li><code>$&#123;&#125;</code></li>
+</ol>
+<p>这是 MyBatis 里非常重要、非常容易考的点。</p>
+<hr>
+<h2 id="1-：安全，推荐使用"><a href="#1-：安全，推荐使用" class="headerlink" title="1. #{}：安全，推荐使用"></a>1. <code>#&#123;&#125;</code>：安全，推荐使用</h2><p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> #&#123;userId&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MyBatis 底层会把它变成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<p>然后把参数传进去。</p>
+<p>这种方式叫：</p>
+<p><strong>预编译。</strong></p>
+<p>优点：</p>
+<ul>
+<li>安全</li>
+<li>防止 SQL 注入</li>
+<li>自动处理类型转换</li>
+</ul>
+<p>日常开发优先用 <code>#&#123;&#125;</code>。</p>
+<hr>
+<h2 id="2-：字符串拼接，有风险"><a href="#2-：字符串拼接，有风险" class="headerlink" title="2. ${}：字符串拼接，有风险"></a>2. <code>$&#123;&#125;</code>：字符串拼接，有风险</h2><p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> goods <span class="keyword">ORDER</span> <span class="keyword">BY</span> $&#123;sortField&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>$&#123;&#125;</code> 会直接把内容拼接进 SQL。</p>
+<p>比如传入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price</span><br></pre></td></tr></table></figure>
+
+<p>最终 SQL 是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> goods <span class="keyword">ORDER</span> <span class="keyword">BY</span> price</span><br></pre></td></tr></table></figure>
+
+<p>看起来没问题。</p>
+<p>但是如果用户恶意传入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price; <span class="keyword">DROP</span> <span class="keyword">TABLE</span> goods;</span><br></pre></td></tr></table></figure>
+
+<p>就可能造成 SQL 注入。</p>
+<p>所以 <code>$&#123;&#125;</code> 很危险。</p>
+<hr>
+<h2 id="3-什么时候必须用"><a href="#3-什么时候必须用" class="headerlink" title="3. 什么时候必须用 ${}"></a>3. 什么时候必须用 <code>$&#123;&#125;</code></h2><p>有些地方不能用 <code>#&#123;&#125;</code>，比如：</p>
+<ul>
+<li>表名</li>
+<li>字段名</li>
+<li>排序字段</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> #&#123;sortField&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样通常不行，因为字段名不能作为普通参数预编译。</p>
+<p>这时可以用 <code>$&#123;&#125;</code>，但必须做白名单校验。</p>
+<p>比如只允许：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name</span><br><span class="line">price</span><br><span class="line">create_time</span><br></pre></td></tr></table></figure>
+
+<p>其他一律拒绝。</p>
+<p>你可以记：</p>
+<blockquote>
+<p>传普通值用 <code>#&#123;&#125;</code>；拼 SQL 结构才考虑 <code>$&#123;&#125;</code>，但必须小心。</p>
+</blockquote>
+<hr>
+<h1 id="十一、MyBatis-动态-SQL"><a href="#十一、MyBatis-动态-SQL" class="headerlink" title="十一、MyBatis 动态 SQL"></a>十一、MyBatis 动态 SQL</h1><p>动态 SQL 是 MyBatis 很重要的功能。</p>
+<p>它解决的问题是：</p>
+<blockquote>
+<p>根据不同条件，动态拼接 SQL。</p>
+</blockquote>
+<p>比如查询用户：</p>
+<p>用户可能输入姓名，也可能输入年龄，也可能两个都不输入。</p>
+<p>你不能写死 SQL。</p>
+<hr>
+<h2 id="1"><a href="#1" class="headerlink" title="1. &lt;if&gt;"></a>1. <code>&lt;if&gt;</code></h2><p>根据条件决定是否拼接某段 SQL。</p>
+<p>例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findUsers&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line">    WHERE 1=1</span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">        AND name = #&#123;name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 name 不为空，就加上姓名条件。<br>如果 name 为空，就不加。</p>
+<hr>
+<h2 id="2"><a href="#2" class="headerlink" title="2. &lt;where&gt;"></a>2. <code>&lt;where&gt;</code></h2><p><code>&lt;where&gt;</code> 可以自动处理 WHERE 和多余的 AND&#x2F;OR。</p>
+<p>例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findUsers&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">            AND name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age != null&quot;</span>&gt;</span></span><br><span class="line">            AND age = #&#123;age&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 name 和 age 都为空，MyBatis 不会生成 WHERE。<br>如果有条件，它会自动加 WHERE，并去掉前面多余的 AND。</p>
+<p>非常好用。</p>
+<hr>
+<h2 id="3"><a href="#3" class="headerlink" title="3. &lt;set&gt;"></a>3. <code>&lt;set&gt;</code></h2><p>专门用于 update。</p>
+<p>例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span>&gt;</span></span><br><span class="line">    UPDATE user</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">            name = #&#123;name&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age != null&quot;</span>&gt;</span></span><br><span class="line">            age = #&#123;age&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    WHERE id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;set&gt;</code> 会自动去掉最后多余的逗号。</p>
+<hr>
+<h2 id="4"><a href="#4" class="headerlink" title="4. &lt;foreach&gt;"></a>4. <code>&lt;foreach&gt;</code></h2><p>用于遍历集合。</p>
+<p>常用于：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> id <span class="keyword">IN</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>MyBatis 写法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findByIds&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line">    WHERE id IN</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 ids 是 <code>[1,2,3]</code>，生成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> id <span class="keyword">IN</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5"><a href="#5" class="headerlink" title="5. &lt;choose&gt;"></a>5. <code>&lt;choose&gt;</code></h2><p>类似 Java 的 switch。</p>
+<p>只会选择一个条件执行。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">        name = #&#123;name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;age != null&quot;</span>&gt;</span></span><br><span class="line">        age = #&#123;age&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        1 = 1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="十二、MyBatis-缓存机制"><a href="#十二、MyBatis-缓存机制" class="headerlink" title="十二、MyBatis 缓存机制"></a>十二、MyBatis 缓存机制</h1><p>PPT 讲了一级缓存和二级缓存。</p>
+<p>缓存就是：</p>
+<blockquote>
+<p>把查过的数据临时存起来，下次不用再查数据库。</p>
+</blockquote>
+<hr>
+<h2 id="1-一级缓存"><a href="#1-一级缓存" class="headerlink" title="1. 一级缓存"></a>1. 一级缓存</h2><p>一级缓存是：</p>
+<p><strong>SqlSession 级别。</strong></p>
+<p>特点：</p>
+<ul>
+<li>默认开启</li>
+<li>同一个 SqlSession 内有效</li>
+<li>执行增删改会清空</li>
+<li>SqlSession 关闭后失效</li>
+</ul>
+<p>比如同一个 SqlSession 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userMapper.findById(<span class="number">1</span>);</span><br><span class="line">userMapper.findById(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第二次可能直接从缓存拿，不查数据库。</p>
+<hr>
+<h2 id="2-二级缓存"><a href="#2-二级缓存" class="headerlink" title="2. 二级缓存"></a>2. 二级缓存</h2><p>二级缓存是：</p>
+<p><strong>Mapper 级别。</strong></p>
+<p>特点：</p>
+<ul>
+<li>默认不一定开启</li>
+<li>需要手动配置</li>
+<li>可以跨 SqlSession 共享</li>
+<li>适合查询多、修改少的数据</li>
+</ul>
+<p>比如字典表、分类表、地区表等数据比较稳定，可以考虑二级缓存。</p>
+<p>但在真实项目中，二级缓存要谨慎使用，因为数据一致性比较麻烦。</p>
+<hr>
+<h1 id="十三、Spring-Java-Config-配置类"><a href="#十三、Spring-Java-Config-配置类" class="headerlink" title="十三、Spring Java Config 配置类"></a>十三、Spring Java Config 配置类</h1><p>PPT 讲了 Spring 的 Java 配置。</p>
+<p>以前 Spring 常用 XML 配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.UserService&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>现在更常用 Java 配置类。</p>
+<hr>
+<h2 id="1-Configuration"><a href="#1-Configuration" class="headerlink" title="1. @Configuration"></a>1. <code>@Configuration</code></h2><p>表示当前类是配置类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它相当于 XML 里的 <code>&lt;beans&gt;</code>。</p>
+<hr>
+<h2 id="2-Bean"><a href="#2-Bean" class="headerlink" title="2. @Bean"></a>2. <code>@Bean</code></h2><p>用于手动创建 Bean。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DriverManagerDataSource</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法返回的对象会交给 Spring 管理。</p>
+<p>方法名默认就是 Bean 的名字。</p>
+<hr>
+<h2 id="3-ComponentScan"><a href="#3-ComponentScan" class="headerlink" title="3. @ComponentScan"></a>3. <code>@ComponentScan</code></h2><p>开启组件扫描。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(basePackages = &quot;com.example&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>表示扫描 <code>com.example</code> 包下面的类。</p>
+<hr>
+<h2 id="4-PropertySource"><a href="#4-PropertySource" class="headerlink" title="4. @PropertySource"></a>4. <code>@PropertySource</code></h2><p>加载外部配置文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource(&quot;classpath:db.properties&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>比如加载数据库配置：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jdbc.url</span>=<span class="string">jdbc:mysql://localhost:3306/mydb</span></span><br><span class="line"><span class="attr">jdbc.user</span>=<span class="string">root</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="十四、MyBatis-配置文件"><a href="#十四、MyBatis-配置文件" class="headerlink" title="十四、MyBatis 配置文件"></a>十四、MyBatis 配置文件</h1><p>PPT 讲了 <code>mybatis-config.xml</code>。</p>
+<p>它是 MyBatis 的核心配置文件。</p>
+<p>主要有三个部分：</p>
+<hr>
+<h2 id="1-1"><a href="#1-1" class="headerlink" title="1. &lt;environments&gt;"></a>1. <code>&lt;environments&gt;</code></h2><p>配置数据库环境。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;dev&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;dev&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mydb&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>它告诉 MyBatis：</p>
+<ul>
+<li>用什么数据库驱动</li>
+<li>连接哪个数据库</li>
+<li>用户名密码是什么</li>
+<li>用什么事务管理方式</li>
+</ul>
+<hr>
+<h2 id="2-1"><a href="#2-1" class="headerlink" title="2. &lt;mappers&gt;"></a>2. <code>&lt;mappers&gt;</code></h2><p>注册 SQL 映射文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;com/example/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<blockquote>
+<p>MyBatis 去这个 XML 文件里找 SQL。</p>
+</blockquote>
+<hr>
+<h2 id="3-1"><a href="#3-1" class="headerlink" title="3. &lt;settings&gt;"></a>3. <code>&lt;settings&gt;</code></h2><p>配置 MyBatis 的全局行为。</p>
+<p>比如：</p>
+<ul>
+<li>是否开启二级缓存</li>
+<li>是否开启懒加载</li>
+<li>使用什么日志实现</li>
+</ul>
+<hr>
+<h1 id="十五、Spring-MVC：Web-请求处理框架"><a href="#十五、Spring-MVC：Web-请求处理框架" class="headerlink" title="十五、Spring MVC：Web 请求处理框架"></a>十五、Spring MVC：Web 请求处理框架</h1><p>Spring MVC 负责处理浏览器或前端发来的 HTTP 请求。</p>
+<p>比如：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /api/employees</span><br><span class="line">POST /api/employees</span><br><span class="line">DELETE /api/employees/1</span><br></pre></td></tr></table></figure>
+
+<p>Spring MVC 要负责：</p>
+<ol>
+<li>接收请求</li>
+<li>找到对应方法</li>
+<li>调用业务逻辑</li>
+<li>返回结果</li>
+</ol>
+<hr>
+<h1 id="十六、-RestController"><a href="#十六、-RestController" class="headerlink" title="十六、@RestController"></a>十六、<code>@RestController</code></h1><p>PPT 重点讲了这个注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/employees&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmployeeController</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>@RestController</code> 等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span> + <span class="meta">@ResponseBody</span></span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<blockquote>
+<p>这个类是控制器，并且方法返回的数据直接写入响应体，通常转换成 JSON。</p>
+</blockquote>
+<p>普通 <code>@Controller</code> 常用于返回页面。<br><code>@RestController</code> 常用于返回数据。</p>
+<hr>
+<h2 id="1-GetMapping"><a href="#1-GetMapping" class="headerlink" title="1. @GetMapping"></a>1. <code>@GetMapping</code></h2><p>处理 GET 请求。</p>
+<p>通常用于查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title function_">list</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> service.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/employees</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-PostMapping"><a href="#2-PostMapping" class="headerlink" title="2. @PostMapping"></a>2. <code>@PostMapping</code></h2><p>处理 POST 请求。</p>
+<p>通常用于新增。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="keyword">public</span> Employee <span class="title function_">create</span><span class="params">(<span class="meta">@RequestBody</span> Employee emp)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> service.save(emp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /api/employees</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-PathVariable"><a href="#3-PathVariable" class="headerlink" title="3. @PathVariable"></a>3. <code>@PathVariable</code></h2><p>从路径中取参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Employee <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> service.findById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/employees/5</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>5</code> 会绑定到 <code>id</code>。</p>
+<hr>
+<h2 id="4-RequestParam"><a href="#4-RequestParam" class="headerlink" title="4. @RequestParam"></a>4. <code>@RequestParam</code></h2><p>从查询参数中取值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/search&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title function_">search</span><span class="params">(<span class="meta">@RequestParam</span> String name)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> service.findByName(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/employees/search?name=张三</span><br></pre></td></tr></table></figure>
+
+<p>这里 <code>name=张三</code> 会绑定到方法参数。</p>
+<hr>
+<h2 id="5-RequestBody"><a href="#5-RequestBody" class="headerlink" title="5. @RequestBody"></a>5. <code>@RequestBody</code></h2><p>从请求体中取 JSON 数据，并转成 Java 对象。</p>
+<p>请求体：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;张三&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">20</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Java 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="keyword">public</span> Employee <span class="title function_">create</span><span class="params">(<span class="meta">@RequestBody</span> Employee emp)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> service.save(emp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring 会自动把 JSON 转成 <code>Employee</code> 对象。</p>
+<hr>
+<h1 id="十七、Spring-MVC-请求完整流程"><a href="#十七、Spring-MVC-请求完整流程" class="headerlink" title="十七、Spring MVC 请求完整流程"></a>十七、Spring MVC 请求完整流程</h1><p>PPT 中这一页很重要。</p>
+<p>流程是：</p>
+<ol>
+<li>客户端发请求</li>
+<li>请求到达 <code>DispatcherServlet</code></li>
+<li><code>HandlerMapping</code> 查找处理器</li>
+<li><code>HandlerAdapter</code> 调用 Controller</li>
+<li>Controller 返回结果</li>
+<li><code>ViewResolver</code> 解析视图</li>
+<li>渲染响应并返回客户端</li>
+</ol>
+<hr>
+<h2 id="1-DispatcherServlet"><a href="#1-DispatcherServlet" class="headerlink" title="1. DispatcherServlet"></a>1. DispatcherServlet</h2><p>它是 Spring MVC 的核心。</p>
+<p>你可以理解为：</p>
+<blockquote>
+<p>所有请求的大门口。</p>
+</blockquote>
+<p>所有请求先进入 <code>DispatcherServlet</code>，再由它分发给具体 Controller。</p>
+<hr>
+<h2 id="2-HandlerMapping"><a href="#2-HandlerMapping" class="headerlink" title="2. HandlerMapping"></a>2. HandlerMapping</h2><p>负责找方法。</p>
+<p>比如请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /user/list</span><br></pre></td></tr></table></figure>
+
+<p>它要找：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/user/list&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">list</span><span class="params">()</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-HandlerAdapter"><a href="#3-HandlerAdapter" class="headerlink" title="3. HandlerAdapter"></a>3. HandlerAdapter</h2><p>负责真正调用 Controller 方法。</p>
+<p>因为不同 Controller 方法写法不同，参数不同，需要适配器帮忙调用。</p>
+<hr>
+<h2 id="4-Controller"><a href="#4-Controller" class="headerlink" title="4. Controller"></a>4. Controller</h2><p>处理业务请求。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">list</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-ModelAndView"><a href="#5-ModelAndView" class="headerlink" title="5. ModelAndView"></a>5. ModelAndView</h2><p>传统 Spring MVC 会返回模型和视图。</p>
+<p>模型是数据。<br>视图是页面。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;userList&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>意思是返回 <code>userList.jsp</code> 页面，并带上一些数据。</p>
+<hr>
+<h2 id="6-ViewResolver"><a href="#6-ViewResolver" class="headerlink" title="6. ViewResolver"></a>6. ViewResolver</h2><p>视图解析器。</p>
+<p>它负责把逻辑视图名变成真实页面路径。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;userList&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>解析成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/WEB-INF/views/userList.jsp</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-返回响应"><a href="#7-返回响应" class="headerlink" title="7. 返回响应"></a>7. 返回响应</h2><p>最后 Spring MVC 把 HTML 页面或 JSON 数据返回给浏览器。</p>
+<hr>
+<h1 id="十八、请求参数绑定相关注解"><a href="#十八、请求参数绑定相关注解" class="headerlink" title="十八、请求参数绑定相关注解"></a>十八、请求参数绑定相关注解</h1><p>PPT 总结了三个：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@RequestParam</code></td>
+<td>获取查询参数</td>
+<td><code>/user?id=1</code></td>
+</tr>
+<tr>
+<td><code>@PathVariable</code></td>
+<td>获取路径变量</td>
+<td><code>/user/1</code></td>
+</tr>
+<tr>
+<td><code>@RequestBody</code></td>
+<td>获取 JSON 请求体</td>
+<td><code>&#123; &quot;name&quot;: &quot;张三&quot; &#125;</code></td>
+</tr>
+</tbody></table>
+<p>你可以这样记：</p>
+<ul>
+<li>URL 问号后面的，用 <code>@RequestParam</code></li>
+<li>URL 路径里面的，用 <code>@PathVariable</code></li>
+<li>JSON 请求体里的，用 <code>@RequestBody</code></li>
+</ul>
+<hr>
+<h1 id="十九、响应处理相关注解"><a href="#十九、响应处理相关注解" class="headerlink" title="十九、响应处理相关注解"></a>十九、响应处理相关注解</h1><h2 id="1-ResponseBody"><a href="#1-ResponseBody" class="headerlink" title="1. @ResponseBody"></a>1. <code>@ResponseBody</code></h2><p>表示方法返回值不是页面名，而是直接作为响应数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器直接收到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-RestController"><a href="#2-RestController" class="headerlink" title="2. @RestController"></a>2. <code>@RestController</code></h2><p>等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br></pre></td></tr></table></figure>
+
+<p>所以 REST 接口一般直接用它。</p>
+<hr>
+<h1 id="二十、全局异常处理"><a href="#二十、全局异常处理" class="headerlink" title="二十、全局异常处理"></a>二十、全局异常处理</h1><p>PPT 讲了：</p>
+<ol>
+<li><code>@ControllerAdvice</code></li>
+<li><code>@ExceptionHandler</code></li>
+</ol>
+<hr>
+<h2 id="1-为什么需要全局异常处理"><a href="#1-为什么需要全局异常处理" class="headerlink" title="1. 为什么需要全局异常处理"></a>1. 为什么需要全局异常处理</h2><p>如果每个 Controller 方法都写 try-catch，会很乱：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>全局异常处理可以统一处理错误。</p>
+<hr>
+<h2 id="2-ControllerAdvice"><a href="#2-ControllerAdvice" class="headerlink" title="2. @ControllerAdvice"></a>2. <code>@ControllerAdvice</code></h2><p>表示这是一个全局异常处理类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GlobalExceptionHandler</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-ExceptionHandler"><a href="#3-ExceptionHandler" class="headerlink" title="3. @ExceptionHandler"></a>3. <code>@ExceptionHandler</code></h2><p>指定处理哪种异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(Exception.class)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">handleException</span><span class="params">(Exception e)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> Result.error(<span class="string">&quot;系统异常&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当 Controller 里抛出异常时，会自动进入这里。</p>
+<p>这样可以统一返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">500</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;系统异常&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="二十一、Spring-MVC-拦截器"><a href="#二十一、Spring-MVC-拦截器" class="headerlink" title="二十一、Spring MVC 拦截器"></a>二十一、Spring MVC 拦截器</h1><p>PPT 讲了 <code>HandlerInterceptor</code> 的三个方法：</p>
+<ol>
+<li><code>preHandle</code></li>
+<li><code>postHandle</code></li>
+<li><code>afterCompletion</code></li>
+</ol>
+<hr>
+<h2 id="1-拦截器是什么"><a href="#1-拦截器是什么" class="headerlink" title="1. 拦截器是什么"></a>1. 拦截器是什么</h2><p>拦截器就是：</p>
+<blockquote>
+<p>在请求进入 Controller 前后插入一些公共逻辑。</p>
+</blockquote>
+<p>常用于：</p>
+<ul>
+<li>登录检查</li>
+<li>权限校验</li>
+<li>日志记录</li>
+<li>防重复提交</li>
+<li>限流</li>
+</ul>
+<hr>
+<h2 id="2-preHandle"><a href="#2-preHandle" class="headerlink" title="2. preHandle"></a>2. <code>preHandle</code></h2><p>Controller 执行前调用。</p>
+<p>如果返回 <code>true</code>，继续执行。<br>如果返回 <code>false</code>，请求被拦住。</p>
+<p>常用于登录判断：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(...)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (用户已登录) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-postHandle"><a href="#3-postHandle" class="headerlink" title="3. postHandle"></a>3. <code>postHandle</code></h2><p>Controller 执行后、视图渲染前调用。</p>
+<p>可以修改模型数据。</p>
+<p>现在前后端分离项目中用得相对少一些。</p>
+<hr>
+<h2 id="4-afterCompletion"><a href="#4-afterCompletion" class="headerlink" title="4. afterCompletion"></a>4. <code>afterCompletion</code></h2><p>整个请求完成后调用。</p>
+<p>无论成功还是异常，一般都会执行。</p>
+<p>适合做资源清理、日志收尾等工作。</p>
+<hr>
+<h1 id="二十二、常见错误：依赖注入缺失"><a href="#二十二、常见错误：依赖注入缺失" class="headerlink" title="二十二、常见错误：依赖注入缺失"></a>二十二、常见错误：依赖注入缺失</h1><p>PPT 提到一个高频错误：</p>
+<blockquote>
+<p>忘记加 <code>@Autowired</code> 或 <code>@Resource</code>，导致对象为 null。</p>
+</blockquote>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">        userService.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里 <code>userService</code> 没有注入，默认是 <code>null</code>。<br>调用时会报：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NullPointerException</span><br></pre></td></tr></table></figure>
+
+<p>也就是空指针异常。</p>
+<p>正确写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更推荐构造函数注入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserController</span><span class="params">(UserService userService)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.userService = userService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="二十三、综合应用：把-SSM-串起来"><a href="#二十三、综合应用：把-SSM-串起来" class="headerlink" title="二十三、综合应用：把 SSM 串起来"></a>二十三、综合应用：把 SSM 串起来</h1><p>PPT 最后一章是综合应用。</p>
+<p>它强调你要掌握完整工作流。</p>
+<p>以“查询用户列表”为例：</p>
+<hr>
+<h2 id="完整流程"><a href="#完整流程" class="headerlink" title="完整流程"></a>完整流程</h2><h3 id="第一步：前端发请求"><a href="#第一步：前端发请求" class="headerlink" title="第一步：前端发请求"></a>第一步：前端发请求</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/users</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第二步：Controller-接收请求"><a href="#第二步：Controller-接收请求" class="headerlink" title="第二步：Controller 接收请求"></a>第二步：Controller 接收请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">list</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> userService.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第三步：Service-处理业务"><a href="#第三步：Service-处理业务" class="headerlink" title="第三步：Service 处理业务"></a>第三步：Service 处理业务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第四步：Mapper-调用-SQL"><a href="#第四步：Mapper-调用-SQL" class="headerlink" title="第四步：Mapper 调用 SQL"></a>第四步：Mapper 调用 SQL</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line">    List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第五步：XML-写-SQL"><a href="#第五步：XML-写-SQL" class="headerlink" title="第五步：XML 写 SQL"></a>第五步：XML 写 SQL</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第六步：返回结果"><a href="#第六步：返回结果" class="headerlink" title="第六步：返回结果"></a>第六步：返回结果</h3><p>数据库返回数据<br>→ MyBatis 封装成 Java 对象<br>→ Service 返回给 Controller<br>→ Controller 返回 JSON 给前端。</p>
+<hr>
+<h1 id="二十四、代码规范重点"><a href="#二十四、代码规范重点" class="headerlink" title="二十四、代码规范重点"></a>二十四、代码规范重点</h1><p>PPT 最后强调了几个工程规范。</p>
+<h2 id="1-组件扫描路径要对"><a href="#1-组件扫描路径要对" class="headerlink" title="1. 组件扫描路径要对"></a>1. 组件扫描路径要对</h2><p>如果你的类在：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.example.service</span><br></pre></td></tr></table></figure>
+
+<p>但配置扫描的是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(&quot;com.test&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>Spring 就扫描不到你的类。</p>
+<p>结果就是 Bean 创建失败，注入失败。</p>
+<hr>
+<h2 id="2-分层注解要正确"><a href="#2-分层注解要正确" class="headerlink" title="2. 分层注解要正确"></a>2. 分层注解要正确</h2><table>
+<thead>
+<tr>
+<th>层</th>
+<th>注解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Controller 控制层</td>
+<td><code>@Controller</code> &#x2F; <code>@RestController</code></td>
+</tr>
+<tr>
+<td>Service 业务层</td>
+<td><code>@Service</code></td>
+</tr>
+<tr>
+<td>DAO &#x2F; Mapper 持久层</td>
+<td><code>@Repository</code></td>
+</tr>
+</tbody></table>
+<p>不要乱用。</p>
+<hr>
+<h2 id="3-Mapper-接口方法名要和-XML-的-id-对应"><a href="#3-Mapper-接口方法名要和-XML-的-id-对应" class="headerlink" title="3. Mapper 接口方法名要和 XML 的 id 对应"></a>3. Mapper 接口方法名要和 XML 的 id 对应</h2><p>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+
+<p>XML：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里 <code>findAll</code> 必须一致。</p>
+<p>如果接口叫 <code>findAll</code>，XML 写成 <code>queryAll</code>，MyBatis 就找不到对应 SQL。</p>
+<hr>
+<h2 id="4-多参数时使用-Param"><a href="#4-多参数时使用-Param" class="headerlink" title="4. 多参数时使用 @Param"></a>4. 多参数时使用 <code>@Param</code></h2><p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; <span class="title function_">findByNameAndAge</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name,</span></span><br><span class="line"><span class="params">                            <span class="meta">@Param(&quot;age&quot;)</span> Integer age)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>XML 中可以写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findByNameAndAge&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line">    WHERE name = #&#123;name&#125;</span><br><span class="line">    AND age = #&#123;age&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不加 <code>@Param</code>，多参数时容易出现参数绑定错误。</p>
+<hr>
+<h1 id="二十五、整份-PPT-的核心记忆口诀"><a href="#二十五、整份-PPT-的核心记忆口诀" class="headerlink" title="二十五、整份 PPT 的核心记忆口诀"></a>二十五、整份 PPT 的核心记忆口诀</h1><p>你可以这样记：</p>
+<blockquote>
+<p>Spring 管对象，AOP 管增强，MyBatis 管 SQL，Spring MVC 管请求。</p>
+</blockquote>
+<p>再展开：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>记忆重点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring Core</td>
+<td>IoC、DI、Bean、组件扫描</td>
+</tr>
+<tr>
+<td>Spring AOP</td>
+<td>代理、通知、事务</td>
+</tr>
+<tr>
+<td>MyBatis</td>
+<td><code>#&#123;&#125;</code>、<code>$&#123;&#125;</code>、动态 SQL、缓存</td>
+</tr>
+<tr>
+<td>Spring MVC</td>
+<td>DispatcherServlet、Controller、请求参数、REST</td>
+</tr>
+<tr>
+<td>综合应用</td>
+<td>Controller → Service → Mapper → XML → DB</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="二十六、考试-复习最容易考的点"><a href="#二十六、考试-复习最容易考的点" class="headerlink" title="二十六、考试&#x2F;复习最容易考的点"></a>二十六、考试&#x2F;复习最容易考的点</h1><p>你重点背这些：</p>
+<ol>
+<li><strong>IoC 是什么？</strong><br>对象创建权交给 Spring 容器。</li>
+<li><strong>DI 是什么？</strong><br>Spring 自动把依赖对象注入进来。</li>
+<li><strong>Bean 是什么？</strong><br>被 Spring 容器管理的对象。</li>
+<li><strong>Spring 默认 Bean 作用域是什么？</strong><br>Singleton，单例。</li>
+<li><strong>构造函数注入和 Setter 注入区别？</strong><br>构造函数注入更安全，Setter 注入更灵活。</li>
+<li><strong>AOP 是什么？</strong><br>把日志、事务、权限等公共功能从业务代码中抽离。</li>
+<li><strong>JDK 动态代理和 CGLIB 区别？</strong><br>JDK 要接口，CGLIB 通过继承生成子类。</li>
+<li><strong>事务默认什么时候回滚？</strong><br>RuntimeException 和 Error。</li>
+<li><strong><code>#&#123;&#125;</code> 和 <code>$&#123;&#125;</code> 区别？</strong><br><code>#&#123;&#125;</code> 预编译，安全；<code>$&#123;&#125;</code> 字符串拼接，有 SQL 注入风险。</li>
+<li><strong>动态 SQL 常见标签？</strong><br><code>&lt;if&gt;</code>、<code>&lt;where&gt;</code>、<code>&lt;set&gt;</code>、<code>&lt;foreach&gt;</code>、<code>&lt;choose&gt;</code>。</li>
+<li><strong>Spring MVC 请求流程？</strong><br>DispatcherServlet → HandlerMapping → HandlerAdapter → Controller → ViewResolver → Response。</li>
+<li><strong><code>@RestController</code> 是什么？</strong><br><code>@Controller + @ResponseBody</code>，返回 JSON 数据。</li>
+<li><strong><code>@RequestParam</code>、<code>@PathVariable</code>、<code>@RequestBody</code> 区别？</strong><br>查询参数、路径参数、请求体 JSON。</li>
+<li><strong>拦截器三个方法？</strong><br><code>preHandle</code>、<code>postHandle</code>、<code>afterCompletion</code>。</li>
+<li><strong>Mapper 接口和 XML 要注意什么？</strong><br>方法名和 SQL 标签 id 必须一致。</li>
+</ol>
+<hr>
+<h1 id="二十七、你作为小白应该怎么学这份-PPT"><a href="#二十七、你作为小白应该怎么学这份-PPT" class="headerlink" title="二十七、你作为小白应该怎么学这份 PPT"></a>二十七、你作为小白应该怎么学这份 PPT</h1><p>建议你按这个顺序理解：</p>
+<p>第一步，先理解整体流程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">前端请求</span><br><span class="line">  ↓</span><br><span class="line">Spring MVC Controller</span><br><span class="line">  ↓</span><br><span class="line">Spring Service</span><br><span class="line">  ↓</span><br><span class="line">MyBatis Mapper</span><br><span class="line">  ↓</span><br><span class="line">数据库</span><br></pre></td></tr></table></figure>
+
+<p>第二步，再理解 Spring：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spring 帮你创建对象、管理对象、注入对象</span><br></pre></td></tr></table></figure>
+
+<p>第三步，再理解 MyBatis：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mapper 接口调用 XML 里的 SQL，去数据库查数据</span><br></pre></td></tr></table></figure>
+
+<p>第四步，再理解 AOP：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不改业务代码，自动加日志、事务、权限等功能</span><br></pre></td></tr></table></figure>
+
+<p>第五步，最后背注解和常见区别题。</p>
+<hr>
+<h1 id="二十八、最终总结"><a href="#二十八、最终总结" class="headerlink" title="二十八、最终总结"></a>二十八、最终总结</h1><p>这份 PPT 的核心不是让你死记很多术语，而是让你理解一套 Java 后端项目是怎么跑起来的：</p>
+<p><strong>Spring Core</strong> 负责创建和管理对象。<br><strong>Spring AOP</strong> 负责给方法自动加事务、日志等公共功能。<br><strong>MyBatis</strong> 负责执行 SQL、操作数据库。<br><strong>Spring MVC</strong> 负责接收请求、调用业务、返回结果。<br><strong>综合应用</strong> 就是把它们串起来，形成一个完整的后端系统。</p>
+<p>你只要先抓住这条主线：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求进来 → Controller → Service → Mapper → SQL → 数据库 → 返回结果</span><br></pre></td></tr></table></figure>
+
+<p>再慢慢补充每个框架的细节，就能把这份 PPT 学明白。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>SSM复习知识点</p><p><a href="https://mczx006.github.io/2026/06/24/SSM复习知识点/">https://mczx006.github.io/2026/06/24/SSM复习知识点/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://McZx006.github.io"><p>zx006</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2026-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2026-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/2026/06/17/%E8%AE%B0%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9F%BA%E5%88%9B%E5%BB%BA%E4%B9%8B%E5%90%8E/" target="_blank">记在博客地基创建之后</a><br></span><span>  2.<a class="is-size-6" href="/2026/06/15/JAVA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/" target="_blank">JAVA程序设计复习资料</a><br></span><span>  3.<a class="is-size-6" href="/2026/06/15/2025_3_28STL/" target="_blank">2025_3_28STL</a><br></span><span>  4.<a class="is-size-6" href="/2026/05/12/%E5%BC%80%E7%AF%87/" target="_blank">开篇</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2026/06/17/%E8%AE%B0%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9F%BA%E5%88%9B%E5%BB%BA%E4%B9%8B%E5%90%8E/"><span class="level-item">记在博客地基创建之后</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"><div id="waline-comment"></div></div><script type="module">import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+init({
+    "el": "#waline-comment",
+    "serverURL": "https://myblog-waline-server.vercel.app",
+    "path": "/2026/06/24/SSM复习知识点/",
+    "lang": "zh-CN",
+    "locale": {
+        "reactionTitle": "评价一下吧"
+    },
+    "dark": "html.night",
+    "meta": [
+        "nick",
+        "mail",
+        "link"
+    ],
+    "requiredMeta": [
+        "nick"
+    ],
+    "login": "disable",
+    "pageSize": 10,
+    "pageview": true,
+    "reaction": true,
+    "search": false
+});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/site-avatar.png" alt="zx006"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">zx006</p><p class="is-size-6 is-block">记录日常、想法和一点点技术</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>十万大山</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/McZx006" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/McZx006"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="mailto:anjuke289@gmail.com"><i class="fa fa-envelope"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><!--!--><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/2026/06/24/SSM%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9/"><img src="/img/posts/cover-ref-01.jpg" alt="SSM复习知识点"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-06-23T17:45:45.000Z">2026-06-24</time></p><p class="title"><a href="/2026/06/24/SSM%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9/">SSM复习知识点</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2026/06/17/%E8%AE%B0%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9F%BA%E5%88%9B%E5%BB%BA%E4%B9%8B%E5%90%8E/"><img src="/img/posts/cover-ref-02.jpg" alt="记在博客地基创建之后"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-06-17T07:50:30.000Z">2026-06-17</time></p><p class="title"><a href="/2026/06/17/%E8%AE%B0%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9C%B0%E5%9F%BA%E5%88%9B%E5%BB%BA%E4%B9%8B%E5%90%8E/">记在博客地基创建之后</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2026/06/15/JAVA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/"><img src="/img/posts/cover-ref-03.jpg" alt="JAVA程序设计复习资料"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-06-15T08:47:24.000Z">2026-06-15</time></p><p class="title"><a href="/2026/06/15/JAVA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/">JAVA程序设计复习资料</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2026/06/15/2025_3_28STL/"><img src="/img/posts/cover-ref-04.jpg" alt="2025_3_28STL"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-06-15T08:46:22.000Z">2026-06-15</time></p><p class="title"><a href="/2026/06/15/2025_3_28STL/">2025_3_28STL</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2026/05/12/%E5%BC%80%E7%AF%87/"><img src="/img/posts/cover-ref-05.jpg" alt="开篇"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-05-12T03:17:25.000Z">2026-05-12</time></p><p class="title"><a href="/2026/05/12/%E5%BC%80%E7%AF%87/">开篇</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2026/06/"><span class="level-start"><span class="level-item">六月 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2026/05/"><span class="level-start"><span class="level-item">五月 2026</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9A%8F%E7%AC%94/"><span class="tag">随笔</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hexo/"><span class="tag">Hexo</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MyBatis/"><span class="tag">MyBatis</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSM/"><span class="tag">SSM</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/STL/"><span class="tag">STL</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Spring/"><span class="tag">Spring</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%9A%E5%AE%A2/"><span class="tag">博客</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/"><span class="tag">复习资料</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E7%AF%87/"><span class="tag">开篇</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><span class="tag">程序设计</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="size-small"><span>&copy; 2026 zx006</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var giscusConfig = null;
+        var walineConfig = {"serverURL":"https://myblog-waline-server.vercel.app","lang":"zh-CN","locale":{"reactionTitle":"评价一下吧"},"dark":"html.night","meta":["nick","mail","link"],"requiredMeta":["nick"],"login":"disable","pageSize":10,"pageview":true,"reaction":true,"search":false};
+        var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        function loadMathJax() { //加载mathjax
+            $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function () {
+                MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] } });
+                var math = document.getElementsByClassName("entry-content")[0];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+        };
+
+        function getGiscusTheme() {
+            return document.body.classList.contains('night') ? 'dark' : 'light';
+        }
+
+        function syncGiscusTheme() {
+            var frame = document.querySelector('iframe.giscus-frame');
+            if (!frame) return;
+            frame.contentWindow.postMessage({
+                giscus: {
+                    setConfig: {
+                        theme: getGiscusTheme()
+                    }
+                }
+            }, 'https://giscus.app');
+        }
+
+        window.syncGiscusTheme = syncGiscusTheme;
+
+        function loadWalineComment() {
+            if (!walineConfig || !walineConfig.serverURL || /^https:\/\/your-waline-server\.example\.com\/?$/i.test(walineConfig.serverURL)) {
+                return;
+            }
+            var walineContainer = document.getElementById('waline-comment');
+            if (!walineContainer) return;
+            walineContainer.innerHTML = '';
+            var options = Object.assign({}, walineConfig, {
+                el: '#waline-comment',
+                path: window.location.pathname
+            });
+            import('https://unpkg.com/@waline/client@v3/dist/waline.js').then(function(module) {
+                module.init(options);
+            }).catch(function(error) {
+                console.log('Waline load error:', error);
+            });
+        }
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(false){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('undefined','undefined','undefined','undefined',undefined);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+            // 重新加载评论
+            loadComments();
+            loadWalineComment();
+        });
+
+        function loadComments() {
+            try {
+                var commentContainer = document.getElementById('comment-container');
+                if (!commentContainer) {
+                    // 使用 MutationObserver 监听 comment-container 的出现
+                    var observer = new MutationObserver(function(mutations) {
+                        commentContainer = document.getElementById('comment-container');
+                        if (commentContainer) {
+                            observer.disconnect();
+                            loadCommentsOnContainer(commentContainer);
+                        }
+                    });
+                    observer.observe(document.body, { childList: true, subtree: true });
+                    return;
+                }
+                
+                loadCommentsOnContainer(commentContainer);
+            } catch (e) {
+                console.log('Comment load error:', e);
+            }
+        }
+        
+        function loadCommentsOnContainer(commentContainer) {
+            var existingScript = document.getElementById('comment-script');
+            if (existingScript) {
+                existingScript.remove();
+            }
+            
+            var utterancesScript = commentContainer.querySelector('script[src*="utteranc.es"]');
+            var giscusScript = commentContainer.querySelector('script[src*="giscus.app"]');
+            
+            if (utterancesScript) {
+                commentContainer.innerHTML = '';
+                
+                var newScript = document.createElement('script');
+                newScript.id = 'comment-script';
+                newScript.src = utterancesScript.src;
+                newScript.crossOrigin = 'anonymous';
+                newScript.async = true;
+                
+                for (var i = 0; i < utterancesScript.attributes.length; i++) {
+                    var attr = utterancesScript.attributes[i];
+                    if (attr.name !== 'src') {
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                }
+                
+                if (commentContainer.parentNode) {
+                    commentContainer.appendChild(newScript);
+                }
+            } else if (giscusScript || giscusConfig) {
+                // 检查 giscus-frame 是否已存在，避免重复加载
+                var existingFrame = commentContainer.querySelector('iframe.giscus-frame');
+                if (existingFrame) {
+                    syncGiscusTheme();
+                    return; // Giscus 已加载，不再重复加载
+                }
+
+                var giscusAttrs = {};
+                if (giscusScript) {
+                    for (var j = 0; j < giscusScript.attributes.length; j++) {
+                        var oldAttr = giscusScript.attributes[j];
+                        giscusAttrs[oldAttr.name] = oldAttr.value;
+                    }
+                } else if (giscusConfig) {
+                    giscusAttrs = {
+                        src: 'https://giscus.app/client.js',
+                        'data-repo': giscusConfig.repo,
+                        'data-repo-id': giscusConfig.repo_id,
+                        'data-category': giscusConfig.category,
+                        'data-category-id': giscusConfig.category_id,
+                        'data-mapping': giscusConfig.mapping,
+                        'data-strict': giscusConfig.strict,
+                        'data-reactions-enabled': giscusConfig.reactions_enabled,
+                        'data-emit-metadata': giscusConfig.emit_metadata,
+                        'data-input-position': giscusConfig.input_position,
+                        'data-theme': getGiscusTheme(),
+                        'data-lang': giscusConfig.lang,
+                        crossorigin: 'anonymous'
+                    };
+                }
+
+                giscusAttrs['data-theme'] = getGiscusTheme();
+                
+                // 延迟加载，确保 DOM 完全准备好
+                setTimeout(function() {
+                    commentContainer.innerHTML = '';
+                    
+                    var newScript = document.createElement('script');
+                    newScript.id = 'comment-script';
+                    newScript.src = giscusAttrs.src || 'https://giscus.app/client.js';
+                    newScript.crossOrigin = 'anonymous';
+                    newScript.async = true;
+                    
+                    Object.keys(giscusAttrs).forEach(function(name) {
+                        if (name !== 'src') {
+                            newScript.setAttribute(name, giscusAttrs[name]);
+                        }
+                    });
+                    
+                    if (commentContainer.parentNode) {
+                        commentContainer.appendChild(newScript);
+                        setTimeout(syncGiscusTheme, 600);
+                    }
+                }, 100);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComments();
+            loadWalineComment();
+            setTimeout(syncGiscusTheme, 800);
+        });</script></body></html>
