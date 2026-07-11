@@ -13768,6 +13768,274 @@ a {
   font-size: 0.68rem;
   line-height: 1;
 }
+#comment-container,
+#waline-comment {
+  max-width: 100%;
+  overflow: visible;
+}
+#comment-container iframe,
+#comment-container iframe.giscus-frame,
+#comment-container .utterances,
+#comment-container .utterances-frame {
+  border: 0;
+  max-width: 100%;
+  min-height: 320px;
+  width: 100% !important;
+}
+#waline-comment {
+  --waline-theme-color: #3273dc;
+  --waline-active-color: #245eb8;
+  --waline-color: #26313f;
+  --waline-bgcolor: rgba(255,255,255,0.76);
+  --waline-bgcolor-light: rgba(255,255,255,0.9);
+  --waline-border-color: rgba(36,83,128,0.14);
+  --waline-disable-bgcolor: rgba(238,242,247,0.88);
+  --waline-disable-color: #8b98a8;
+  --waline-info-bgcolor: rgba(50,115,220,0.08);
+  --waline-info-color: #5f6f83;
+  color: #26313f;
+}
+#waline-comment .wl-panel,
+#waline-comment .wl-cards .wl-card,
+#waline-comment .wl-editor,
+#waline-comment .wl-input {
+  background: rgba(255,255,255,0.78) !important;
+  border-color: rgba(36,83,128,0.14) !important;
+  color: #26313f !important;
+}
+#waline-comment .wl-panel,
+#waline-comment .wl-cards .wl-card {
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(31,45,61,0.07);
+  overflow: visible;
+}
+#waline-comment .wl-editor {
+  min-height: 8rem;
+  resize: vertical;
+}
+#waline-comment .wl-content,
+#waline-comment .wl-content p,
+#waline-comment .wl-comment,
+#waline-comment .wl-nick,
+#waline-comment .wl-user,
+#waline-comment .wl-meta,
+#waline-comment .wl-card .wl-head,
+#waline-comment .wl-empty,
+#waline-comment .wl-count,
+#waline-comment .wl-power,
+#waline-comment .wl-sort li {
+  color: #26313f !important;
+}
+#waline-comment .wl-meta,
+#waline-comment .wl-power {
+  color: #6b7887 !important;
+}
+#waline-comment .wl-content a,
+#waline-comment .wl-nick,
+#waline-comment .wl-sort li.active {
+  color: #2769d8 !important;
+}
+#waline-comment .wl-btn {
+  border-radius: 8px;
+}
+#waline-comment .wl-btn.primary {
+  background: #3273dc !important;
+  border-color: #3273dc !important;
+  color: #fff !important;
+}
+#waline-comment .wl-input:focus,
+#waline-comment .wl-editor:focus {
+  border-color: rgba(50,115,220,0.48) !important;
+  box-shadow: 0 0 0 3px rgba(50,115,220,0.12) !important;
+}
+.night {
+  --night-readable: #f3f7ff;
+  --night-readable-soft: rgba(243,247,255,0.88);
+  --night-muted: rgba(218,226,238,0.76);
+  --night-card: rgba(36,42,52,0.82);
+  --night-card-strong: rgba(42,49,60,0.92);
+  --night-line: rgba(180,202,230,0.18);
+}
+.night,
+.night .card,
+.night .article,
+.night .content,
+.night .menu,
+.night .widget,
+.night .footer {
+  color: var(--night-readable-soft) !important;
+}
+.night .card,
+.night .navbar,
+.night footer.footer {
+  background: var(--night-card) !important;
+  border-color: var(--night-line) !important;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.2);
+}
+.night .card:hover,
+.night .widget.card:hover {
+  border-color: rgba(139,190,255,0.28) !important;
+}
+.night .title,
+.night .article .title,
+.night .article .title a,
+.night .content h1,
+.night .content h2,
+.night .content h3,
+.night .content h4,
+.night .content h5,
+.night .content h6,
+.night .menu-label,
+.night .widget .title,
+.night .level .title,
+.night strong {
+  color: var(--night-readable) !important;
+}
+.night .content p,
+.night .content li,
+.night .content table,
+.night .content blockquote,
+.night .article-meta,
+.night .article-meta span,
+.night .article-meta .level-item,
+.night .article-meta i,
+.night .index-summary,
+.night .date,
+.night .media-content,
+.night .menu-list a,
+.night .level-item,
+.night .heading {
+  color: var(--night-readable-soft) !important;
+}
+.night .has-text-grey,
+.night .has-text-grey-light,
+.night .has-text-black,
+.night .has-text-black-ter,
+.night .link-muted {
+  color: var(--night-readable-soft) !important;
+}
+.night a,
+.night .content a,
+.night .article-meta a,
+.night .commentCount,
+.night .media-content a,
+.night .tags.has-addons .tag:first-child {
+  color: #8fc2ff !important;
+}
+.night a:hover,
+.night .content a:hover,
+.night .menu-list a:hover {
+  color: #cfe5ff !important;
+}
+.night input,
+.night textarea,
+.night select {
+  background: rgba(18,23,31,0.82) !important;
+  border-color: var(--night-line) !important;
+  color: var(--night-readable) !important;
+}
+.night input::placeholder,
+.night textarea::placeholder {
+  color: rgba(218,226,238,0.56) !important;
+}
+.night #comment-container,
+.night #waline-comment {
+  color: var(--night-readable) !important;
+  max-width: 100%;
+  overflow: visible;
+}
+.night #waline-comment {
+  --waline-theme-color: #8fc2ff;
+  --waline-active-color: #b7d8ff;
+  --waline-color: #f3f7ff;
+  --waline-bgcolor: rgba(36,42,52,0.86);
+  --waline-bgcolor-light: rgba(45,53,66,0.94);
+  --waline-border-color: rgba(180,202,230,0.18);
+  --waline-disable-bgcolor: rgba(24,29,38,0.84);
+  --waline-disable-color: rgba(218,226,238,0.56);
+  --waline-info-bgcolor: rgba(143,194,255,0.12);
+  --waline-info-color: rgba(243,247,255,0.82);
+}
+.night #waline-comment .wl-panel,
+.night #waline-comment .wl-cards .wl-card,
+.night #waline-comment .wl-editor,
+.night #waline-comment .wl-input,
+.night #waline-comment .wl-preview,
+.night #waline-comment .wl-header,
+.night #waline-comment .wl-footer {
+  background: var(--night-card-strong) !important;
+  border-color: var(--night-line) !important;
+  color: var(--night-readable) !important;
+  filter: unset !important;
+}
+.night #waline-comment .wl-panel,
+.night #waline-comment .wl-cards .wl-card {
+  box-shadow: 0 16px 38px rgba(0,0,0,0.22);
+  overflow: visible;
+}
+.night #waline-comment .wl-content,
+.night #waline-comment .wl-content p,
+.night #waline-comment .wl-content li,
+.night #waline-comment .wl-comment,
+.night #waline-comment .wl-nick,
+.night #waline-comment .wl-user,
+.night #waline-comment .wl-card .wl-head,
+.night #waline-comment .wl-empty,
+.night #waline-comment .wl-count,
+.night #waline-comment .wl-power,
+.night #waline-comment .wl-sort li,
+.night #waline-comment .wl-reaction-title,
+.night #waline-comment .wl-info,
+.night #waline-comment label {
+  color: var(--night-readable) !important;
+  filter: unset !important;
+}
+.night #waline-comment .wl-meta,
+.night #waline-comment .wl-time,
+.night #waline-comment .wl-power,
+.night #waline-comment .wl-card .wl-meta {
+  color: var(--night-muted) !important;
+}
+.night #waline-comment a,
+.night #waline-comment .wl-content a,
+.night #waline-comment .wl-nick,
+.night #waline-comment .wl-sort li.active {
+  color: #9dccff !important;
+}
+.night #waline-comment .wl-btn {
+  background: rgba(143,194,255,0.1) !important;
+  border-color: rgba(143,194,255,0.24) !important;
+  color: var(--night-readable) !important;
+  filter: unset !important;
+}
+.night #waline-comment .wl-btn.primary {
+  background: #3273dc !important;
+  border-color: #3273dc !important;
+  color: #fff !important;
+}
+.night #waline-comment .wl-input:focus,
+.night #waline-comment .wl-editor:focus {
+  border-color: rgba(143,194,255,0.55) !important;
+  box-shadow: 0 0 0 3px rgba(143,194,255,0.14) !important;
+}
+.night #waline-comment .wl-reaction,
+.night #waline-comment .wl-reaction-list,
+.night #waline-comment .wl-cards,
+.night #waline-comment .wl-card {
+  overflow: visible !important;
+}
+.night #waline-comment .wl-content img,
+.night #waline-comment .wl-reaction-img {
+  filter: brightness(1.04) !important;
+}
+.night #comment-container iframe,
+.night #comment-container iframe.giscus-frame,
+.night #comment-container .utterances,
+.night #comment-container .utterances-frame {
+  background: transparent !important;
+  color-scheme: dark;
+  min-height: 360px;
+}
 @media screen and (max-width: 580px) {
   #waline-comment .wl-reaction-list {
     gap: 10px;
