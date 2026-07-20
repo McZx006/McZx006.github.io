@@ -13807,6 +13807,7 @@ a {
   border-radius: 10px;
   box-shadow: 0 12px 28px rgba(31,45,61,0.07);
   overflow: visible;
+  padding: 1.25rem;
 }
 #waline-comment .wl-editor {
   min-height: 8rem;
@@ -13971,6 +13972,7 @@ a {
 .night #waline-comment .wl-cards .wl-card {
   box-shadow: 0 16px 38px rgba(0,0,0,0.22);
   overflow: visible;
+  padding: 1.25rem;
 }
 .night #waline-comment .wl-content,
 .night #waline-comment .wl-content p,
@@ -13979,20 +13981,25 @@ a {
 .night #waline-comment .wl-nick,
 .night #waline-comment .wl-user,
 .night #waline-comment .wl-card .wl-head,
+.night #waline-comment .wl-card .wl-head span,
 .night #waline-comment .wl-empty,
 .night #waline-comment .wl-count,
 .night #waline-comment .wl-power,
 .night #waline-comment .wl-sort li,
 .night #waline-comment .wl-reaction-title,
 .night #waline-comment .wl-info,
-.night #waline-comment label {
+.night #waline-comment label,
+.night #waline-comment span {
   color: var(--night-readable) !important;
   filter: unset !important;
 }
 .night #waline-comment .wl-meta,
+.night #waline-comment .wl-meta span,
 .night #waline-comment .wl-time,
+.night #waline-comment .wl-time span,
 .night #waline-comment .wl-power,
-.night #waline-comment .wl-card .wl-meta {
+.night #waline-comment .wl-card .wl-meta,
+.night #waline-comment .wl-card .wl-meta span {
   color: var(--night-muted) !important;
 }
 .night #waline-comment a,
@@ -14022,6 +14029,16 @@ a {
 .night #waline-comment .wl-cards,
 .night #waline-comment .wl-card {
   overflow: visible !important;
+}
+.night #waline-comment .wl-cards {
+  background: var(--night-card) !important;
+  border-color: var(--night-line) !important;
+}
+.night #waline-comment div {
+  background: transparent !important;
+  border-color: var(--night-line) !important;
+  color: var(--night-readable) !important;
+  filter: unset !important;
 }
 .night #waline-comment .wl-content img,
 .night #waline-comment .wl-reaction-img {
